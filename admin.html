@@ -576,6 +576,79 @@ async function loadAdminData() {
   const { data: subs } = await sb.from('newsletter_subscribers').select('*').order('created_at', {ascending: false});
   // Load enquiries
   const { data: enqs } = await sb.from('enquiries').select('*').order('created_at', {ascending: false});
+  // Load contact messages
+  const { data: contacts } = await sb.from('contact_messages').select('*').order('created_at', {ascending: false});
+
+  // Update stat counters
+  document.querySelectorAll('.stat-value').forEach(function(el, i) {
+    if (i === 0 && enqs) el.textContent = enqs.length;
+    if (i === 1 && apps) el.textContent = apps.length;
+    if (i === 2 && contacts) el.textContent = contacts.length;
+    if (i === 3 && subs) el.textContent = subs.length;
+  });
+
+  // Update applications table
+  if (apps && apps.length > 0) {
+    const appContainer = document.querySelector('#admin-applications .table-body') || document.querySelector('#admin-applications');
+    if (appContainer) {
+      const existingRows = appContainer.querySelectorAll('.table-row');
+      existingRows.forEach(r => r.remove());
+      apps.forEach(app => {
+        const row = document.createElement('div');
+        row.className = 'table-row';
+        row.style.gridTemplateColumns = '2fr 1fr 1fr 1fr';
+        row.innerHTML = `<div><div class="row-name">${app.factory_name || app.name || 'Unknown'}</div><div class="row-sub">${app.city || app.country || ''}</div></div><div>${app.email || ''}</div><div><span class="badge badge-new">${app.status || 'New'}</span></div><div><button class="btn btn-approve">Review</button></div>`;
+        appContainer.appendChild(row);
+      });
+    }
+  }
+
+  // Update enquiries
+  if (enqs && enqs.length > 0) {
+    const enqContainer = document.querySelector('#admin-enquiries');
+    if (enqContainer) {
+      const existingRows = enqContainer.querySelectorAll('.table-row');
+      existingRows.forEach(r => r.remove());
+      enqs.forEach(enq => {
+        const row = document.createElement('div');
+        row.className = 'table-row';
+        row.style.gridTemplateColumns = '2fr 2fr 1fr 1fr';
+        row.innerHTML = `<div><div class="row-name">${enq.sender_name || enq.brand_name || enq.name || 'Unknown'}</div><div class="row-sub">${enq.sender_email || enq.email || ''}</div></div><div>${enq.factory_name || ''}</div><div class="row-sub" style="font-size:12px;color:#555;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${enq.message || ''}</div><div class="row-sub">${new Date(enq.created_at).toLocaleDateString()}</div>`;
+        enqContainer.appendChild(row);
+      });
+    }
+  }
+
+  // Update contact messages
+  if (contacts && contacts.length > 0) {
+    const contactContainer = document.querySelector('#admin-contact') || document.querySelector('#admin-enquiries');
+    if (contactContainer) {
+      contacts.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'table-row';
+        row.style.gridTemplateColumns = '2fr 1fr 2fr 1fr';
+        row.innerHTML = `<div><div class="row-name">${c.name || 'Unknown'}</div><div class="row-sub">${c.email || ''}</div></div><div>${c.subject || ''}</div><div class="row-sub" style="font-size:12px;color:#555;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${c.message || ''}</div><div class="row-sub">${new Date(c.created_at).toLocaleDateString()}</div>`;
+        contactContainer.appendChild(row);
+      });
+    }
+  }
+
+  // Update newsletter table
+  if (subs && subs.length > 0) {
+    const subContainer = document.querySelector('#admin-newsletter');
+    if (subContainer) {
+      const existingRows = subContainer.querySelectorAll('.table-row');
+      existingRows.forEach(r => r.remove());
+      subs.forEach(sub => {
+        const row = document.createElement('div');
+        row.className = 'table-row';
+        row.style.gridTemplateColumns = '2fr 1fr';
+        row.innerHTML = `<div class="row-name">${sub.email}</div><div class="row-sub">${new Date(sub.created_at).toLocaleDateString()}</div>`;
+        subContainer.appendChild(row);
+      });
+    }
+  }
+}
 
   // Update applications table
   if (apps && apps.length > 0) {
