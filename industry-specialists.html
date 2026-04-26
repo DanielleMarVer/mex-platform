@@ -280,8 +280,29 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
   <div class="trust-item"><span class="tdot"></span> Contact directly through MEx.</div>
 </div>
 
-<div class="filter-bar">
-  <input type="text" id="pm-search" placeholder="Search by name, country or area of expertise..." oninput="applyFilters()">
+<div class="filter-bar" style="padding:12px 48px;">
+  <div style="display:flex;max-width:900px;width:100%;margin:0 auto;background:#fff;border:1.5px solid #e0e0e0;border-radius:50px;padding:5px 5px 5px 20px;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <input type="text" id="pm-search" placeholder="Search by name, country or expertise..." oninput="applyFilters()" style="flex:1;border:none;outline:none;font-size:15px;font-family:'DM Sans',sans-serif;color:#111;background:transparent;min-width:0;">
+    <div style="position:relative;border-left:1px solid #eee;flex-shrink:0;" id="pm-dd-wrap">
+      <div onclick="pmDDToggle()" style="display:flex;align-items:center;gap:6px;padding:8px 12px;cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif;color:#555;white-space:nowrap;min-width:130px;user-select:none;">
+        <span id="pm-dd-label">All countries</span>
+        <svg id="pm-dd-arrow" style="transition:transform 0.2s;flex-shrink:0;" width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div id="pm-dd-panel" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid #e0e0e0;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.12);z-index:9999;width:240px;overflow:hidden;">
+        <div style="padding:10px 12px 8px;border-bottom:1px solid #f0f0f0;">
+          <input type="text" id="pm-dd-search" placeholder="Search country..." oninput="pmDDFilter()" onclick="event.stopPropagation()" style="width:100%;border:1px solid #e0e0e0;border-radius:8px;padding:7px 10px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:#111;">
+        </div>
+        <div id="pm-dd-list" style="overflow-y:auto;max-height:240px;padding:4px 0;">
+          <div onclick="pmDDSelect('','All countries')" style="padding:9px 16px;font-size:14px;color:#1A35D4;font-weight:500;cursor:pointer;border-bottom:1px solid #f0f0f0;">All countries</div>
+        </div>
+      </div>
+    </div>
+    <button onclick="applyFilters()" style="background:#1A35D4;color:#fff;border:none;padding:9px 22px;border-radius:50px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;white-space:nowrap;margin-left:4px;">Search</button>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;max-width:900px;width:100%;margin:8px auto 0;">
+    <button onclick="pmClearFilters()" style="font-size:13px;color:#aaa;background:none;border:none;cursor:pointer;padding:0;">Clear filters</button>
+    <span id="pm-count" style="font-size:13px;color:#aaa;"></span>
+  </div>
 </div>
 
 <div class="pm-grid" id="pm-grid">
@@ -418,15 +439,89 @@ function renderSpecialists(list) {
   });
 }
 
+var _pmDDOpen = false;
+var _pmCountry = '';
+
+// Countries for specialists — all world countries
+var PM_COUNTRIES = [
+  'Afghanistan','Albania','Algeria','Argentina','Australia','Austria','Bangladesh','Belgium',
+  'Brazil','Bulgaria','Cambodia','Canada','Chile','China','Colombia','Croatia','Czech Republic',
+  'Denmark','Egypt','Estonia','Ethiopia','Finland','France','Germany','Ghana','Greece',
+  'Hong Kong','Hungary','India','Indonesia','Iran','Ireland','Israel','Italy','Japan',
+  'Jordan','Kenya','Latvia','Lithuania','Malaysia','Mexico','Morocco','Myanmar','Netherlands',
+  'New Zealand','Nigeria','Norway','Pakistan','Peru','Philippines','Poland','Portugal',
+  'Romania','Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain',
+  'Sri Lanka','Sweden','Switzerland','Taiwan','Thailand','Tunisia','Turkey','Ukraine',
+  'United Kingdom','United States','Vietnam'
+];
+
+function pmDDToggle() {
+  _pmDDOpen = !_pmDDOpen;
+  document.getElementById('pm-dd-panel').style.display = _pmDDOpen ? 'block' : 'none';
+  document.getElementById('pm-dd-arrow').style.transform = _pmDDOpen ? 'rotate(180deg)' : '';
+  if (_pmDDOpen) setTimeout(function(){ document.getElementById('pm-dd-search').focus(); }, 50);
+}
+
+function pmDDSelect(value, label) {
+  _pmCountry = value;
+  document.getElementById('pm-dd-label').textContent = label;
+  document.getElementById('pm-dd-panel').style.display = 'none';
+  document.getElementById('pm-dd-arrow').style.transform = '';
+  _pmDDOpen = false;
+  applyFilters();
+}
+
+function pmDDFilter() {
+  var q = document.getElementById('pm-dd-search').value.toLowerCase();
+  document.querySelectorAll('#pm-dd-list .pm-dd-item').forEach(function(el) {
+    el.style.display = (!q || el.dataset.value.includes(q)) ? 'block' : 'none';
+  });
+}
+
+function pmClearFilters() {
+  document.getElementById('pm-search').value = '';
+  _pmCountry = '';
+  document.getElementById('pm-dd-label').textContent = 'All countries';
+  applyFilters();
+}
+
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('pm-dd-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    document.getElementById('pm-dd-panel').style.display = 'none';
+    document.getElementById('pm-dd-arrow').style.transform = '';
+    _pmDDOpen = false;
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var list = document.getElementById('pm-dd-list');
+  PM_COUNTRIES.forEach(function(c) {
+    var div = document.createElement('div');
+    div.className = 'pm-dd-item';
+    div.dataset.value = c.toLowerCase();
+    div.textContent = c;
+    div.style.cssText = 'padding:9px 16px;font-size:14px;color:#111;cursor:pointer;';
+    div.addEventListener('click', function(e){ e.stopPropagation(); pmDDSelect(c.toLowerCase(), c); });
+    div.addEventListener('mouseover', function(){ this.style.background='#f5f7ff'; this.style.color='#1A35D4'; });
+    div.addEventListener('mouseout', function(){ this.style.background=''; this.style.color='#111'; });
+    list.appendChild(div);
+  });
+});
+
 function applyFilters() {
   var q = document.getElementById('pm-search').value.toLowerCase();
   var filtered = allSpecialists.filter(function(s) {
-    return !q || s.name.toLowerCase().includes(q) ||
+    var matchesText = !q || s.name.toLowerCase().includes(q) ||
            s.location.toLowerCase().includes(q) ||
            s.tags.some(function(t) { return t.toLowerCase().includes(q); }) ||
            s.bio.toLowerCase().includes(q) ||
            s.roleLabel.toLowerCase().includes(q);
+    var matchesCountry = !_pmCountry || s.location.toLowerCase().includes(_pmCountry);
+    return matchesText && matchesCountry;
   });
+  var countEl = document.getElementById('pm-count');
+  if (countEl) countEl.textContent = filtered.length + ' specialist' + (filtered.length !== 1 ? 's' : '');
   renderSpecialists(filtered);
 }
 
