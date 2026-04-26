@@ -440,7 +440,7 @@ body{font-family:'DM Sans',sans-serif;background:#f5f6fa;color:#111;display:flex
           <div class="form-group"><label>Certifications</label><input class="form-input" value="ISO 9001, WRAP, OEKO-TEX"></div>
           <div class="form-group"><label>Export markets</label><input class="form-input" value="Spain, France, United Kingdom, Germany, United States"></div>
           <div style="display:flex;gap:12px;margin-top:8px;">
-            <button class="btn btn-primary">Save changes</button>
+            <button class="btn btn-primary" onclick="saveProfile()">Save changes</button>
             <a href="#" style="font-size:13px;color:#1A35D4;display:flex;align-items:center;gap:4px;padding:11px 0;">View public profile →</a>
           </div>
         </div>
@@ -466,7 +466,8 @@ body{font-family:'DM Sans',sans-serif;background:#f5f6fa;color:#111;display:flex
       <div class="card" style="padding:28px;">
         <div style="font-size:13px;color:#aaa;margin-bottom:20px;">Drag and drop photos or click to upload. Recommended size: 1200 × 900px. JPG or PNG.</div>
         <div class="photo-grid">
-          <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div><div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div><div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div><div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div><div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div><div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div><div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div><div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div>
+          <div class="photo-slot" onclick="document.getElementById('photo-upload-input').click()" style="cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg><span>Upload photo</span></div>
+          <input type="file" id="photo-upload-input" accept="image/*" style="display:none;" onchange="uploadPhoto(this)">
         </div>
         <div style="margin-top:20px;padding-top:20px;border-top:1px solid #f5f5f5;">
           <div style="font-size:12px;color:#aaa;">Photos are reviewed by MEx. before appearing on your public profile. This requires a live backend to function — see your developer.</div>
@@ -557,24 +558,215 @@ window.addEventListener('load', async function() {
     window.location.href = 'login.html';
     return;
   }
-  try {
-    var res = await fetch('/api/dashboard', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-    if (!res.ok) {
-      localStorage.removeItem('mex_token');
-      localStorage.removeItem('mex_user');
-      window.location.href = 'login.html';
-      return;
-    }
-    var data = await res.json();
-    // Update welcome message
-    var name = data.user.name || data.user.email;
-    document.getElementById('hero-sub').textContent = 'Welcome back, ' + name + '. Here is how your listing is performing.';
-  } catch(e) {
-    console.log('Dashboard load error:', e);
+
+  // Initialize Supabase
+  const SUPABASE_URL = 'https://fqbaxqclrigvopavuxrf.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxYmF4cWNscmlndm9wYXZ1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NDE0MjEsImV4cCI6MjA5MjUxNzQyMX0.SqpXz3_TiNNiC2QIM5UCKyZeG2WyiKDmi-6d4eik6Oo';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // Get current user
+  const { data: { user }, error: userError } = await sb.auth.getUser(token);
+  if (userError || !user) {
+    localStorage.removeItem('mex_token');
+    localStorage.removeItem('mex_user');
+    window.location.href = 'login.html';
+    return;
   }
+
+  // Get factory linked to this user
+  let factory = null;
+  const { data: factoryUser } = await sb
+    .from('factory_users')
+    .select('factory_id, factories(*)')
+    .eq('user_id', user.id)
+    .single();
+
+  if (factoryUser && factoryUser.factories) {
+    factory = factoryUser.factories;
+  } else {
+    // Try direct user_id match on factories table
+    const { data: directFactory } = await sb
+      .from('factories')
+      .select('*')
+      .eq('user_id', user.id)
+      .single();
+    factory = directFactory;
+  }
+
+  // Update header with real factory name
+  var factoryName = factory ? factory.name : (user.user_metadata?.company || 'My Factory');
+  var factoryFlag = factory ? (factory.flag || '🏭') : '🏭';
+
+  document.querySelectorAll('.topbar-factory').forEach(el => el.textContent = factoryName);
+  document.querySelectorAll('.topbar-user span').forEach(el => el.textContent = factoryName);
+  document.querySelectorAll('.profile-card-name').forEach(el => el.textContent = factoryName);
+  document.querySelectorAll('.user-avatar').forEach(el => el.textContent = factoryFlag);
+  document.getElementById('hero-sub').textContent = 'Welcome back, ' + (user.user_metadata?.full_name || user.email) + '. Here is how your listing is performing.';
+
+  // Update sidebar bottom
+  var sidebarBottom = document.querySelector('.sidebar-factory-name');
+  if (sidebarBottom) sidebarBottom.textContent = factoryName;
+
+  // Load enquiries if factory exists
+  if (factory) {
+    const { data: enquiries } = await sb
+      .from('enquiries')
+      .select('*')
+      .eq('factory_id', factory.id)
+      .order('created_at', { ascending: false });
+
+    if (enquiries && enquiries.length > 0) {
+      // Update stats
+      var totalEl = document.querySelector('.stat-value');
+      if (totalEl) totalEl.textContent = enquiries.length;
+
+      // Update enquiries table
+      var enquiryTable = document.getElementById('page-enquiries');
+      if (enquiryTable) {
+        var tableBody = enquiryTable.querySelector('.card-body') || enquiryTable;
+        var existingRows = tableBody.querySelectorAll('.table-row');
+        existingRows.forEach(r => r.remove());
+
+        enquiries.forEach(function(enq) {
+          var statusClass = enq.status === 'new' ? 'badge-new' : enq.status === 'replied' ? 'badge-approved' : 'badge-pending';
+          var statusLabel = enq.status === 'new' ? 'New' : enq.status === 'replied' ? 'Replied' : 'Read';
+          var row = document.createElement('div');
+          row.className = 'table-row';
+          row.style.cssText = 'grid-template-columns:2fr 1fr 1fr 1fr 1fr;';
+          row.innerHTML = '<div><div class="row-name">' + (enq.sender_name || 'Unknown') + '</div><div class="row-sub">' + (enq.sender_email || '') + '</div></div>' +
+            '<div class="row-sub">' + (enq.company || '—') + '</div>' +
+            '<div class="row-sub" style="font-size:12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (enq.message || '') + '</div>' +
+            '<div class="row-sub">' + new Date(enq.created_at).toLocaleDateString() + '</div>' +
+            '<div style="display:flex;gap:8px;align-items:center;">' +
+              '<span class="badge ' + statusClass + '">' + statusLabel + '</span>' +
+              (enq.status === 'new' ? '<button onclick="markEnquiryRead(\'' + enq.id + '\', this)" style="font-size:11px;background:none;border:1px solid #e0e0e0;padding:3px 8px;border-radius:6px;cursor:pointer;color:#555;">Mark read</button>' : '') +
+            '</div>';
+          tableBody.appendChild(row);
+        });
+
+        // Update recent enquiries on overview
+        var recentContainer = document.querySelector('#page-overview .table-row')?.parentElement;
+        if (recentContainer) {
+          recentContainer.querySelectorAll('.table-row').forEach(r => r.remove());
+          enquiries.slice(0, 5).forEach(function(enq) {
+            var row = document.createElement('div');
+            row.className = 'table-row';
+            row.style.gridTemplateColumns = '2fr 1fr 1fr 1fr';
+            row.innerHTML = '<div><div class="row-name">' + (enq.sender_name || 'Unknown') + '</div><div class="row-sub">' + (enq.company || enq.sender_email || '') + '</div></div>' +
+              '<div>—</div>' +
+              '<div class="row-sub">' + new Date(enq.created_at).toLocaleDateString() + '</div>' +
+              '<div><span class="badge badge-new">' + (enq.status === 'new' ? 'New' : 'Read') + '</span></div>';
+            recentContainer.appendChild(row);
+          });
+        }
+      }
+    }
+
+    // Load factory profile into form
+    if (factory) {
+      var nameInput = document.querySelector('input.form-input[value*="My Factory"]') || document.querySelector('#profile-name');
+      if (nameInput) nameInput.value = factory.name || '';
+      var descInput = document.querySelector('textarea.form-input');
+      if (descInput) descInput.value = factory.about || '';
+      var moqInput = document.querySelector('input.form-input[value*="500 units"]');
+      if (moqInput) moqInput.value = factory.moq || '';
+      var websiteInput = document.querySelector('input.form-input[value*="myfactory.com"]');
+      if (websiteInput) websiteInput.value = factory.website || '';
+      var phoneInput = document.querySelector('input.form-input[value*="+351"]');
+      if (phoneInput) phoneInput.value = factory.phone || '';
+      var emailInput = document.querySelector('input.form-input[value*="info@myfactory.com"]');
+      if (emailInput) emailInput.value = factory.website ? 'info@' + factory.website : user.email;
+      var certInput = document.querySelector('input.form-input[value*="ISO 9001"]');
+      if (certInput) certInput.value = (factory.certifications || []).join(', ');
+    }
+
+    // Load photos
+    const { data: photos } = await sb
+      .from('factory_photos')
+      .select('*')
+      .eq('factory_id', factory.id)
+      .order('created_at', { ascending: false });
+
+    if (photos && photos.length > 0) {
+      var photoGrid = document.querySelector('#page-photos .photo-grid') || document.querySelector('#page-photos');
+      if (photoGrid) {
+        photos.forEach(function(photo) {
+          var div = document.createElement('div');
+          div.style.cssText = 'position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#f5f5f5;';
+          div.innerHTML = '<img src="' + photo.url + '" style="width:100%;height:100%;object-fit:cover;">' +
+            '<button onclick="deletePhoto(\'' + photo.id + '\', \'' + photo.url + '\')" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;">×</button>';
+          photoGrid.appendChild(div);
+        });
+      }
+    }
+  }
+
+  // Store sb and factory globally for other functions
+  window._sb = sb;
+  window._factory = factory;
+  window._user = user;
 });
+
+async function markEnquiryRead(id, btn) {
+  if (!window._sb) return;
+  await window._sb.from('enquiries').update({ status: 'read' }).eq('id', id);
+  btn.parentElement.querySelector('.badge').className = 'badge badge-pending';
+  btn.parentElement.querySelector('.badge').textContent = 'Read';
+  btn.remove();
+}
+
+async function saveProfile() {
+  if (!window._sb || !window._factory) return;
+  var btn = document.querySelector('#page-profile .btn-primary');
+  if (btn) { btn.textContent = 'Saving...'; btn.disabled = true; }
+
+  var updates = {
+    name: document.querySelector('input.form-input[placeholder="Factory name"]')?.value || window._factory.name,
+    about: document.querySelector('textarea.form-input')?.value || window._factory.about,
+    moq: document.querySelector('input.form-input[placeholder="e.g. 100 units"]')?.value || window._factory.moq,
+    website: document.querySelector('input.form-input[placeholder="yourwebsite.com"]')?.value || window._factory.website,
+    phone: document.querySelector('input.form-input[placeholder="+1 234 567 8900"]')?.value || window._factory.phone,
+  };
+
+  const { error } = await window._sb.from('factories').update(updates).eq('id', window._factory.id);
+  if (btn) {
+    btn.textContent = error ? 'Error — try again' : 'Changes saved ✓';
+    btn.disabled = false;
+    setTimeout(() => { if(btn) btn.textContent = 'Save changes'; }, 3000);
+  }
+}
+
+async function uploadPhoto(input) {
+  if (!window._sb || !window._factory || !input.files[0]) return;
+  var file = input.files[0];
+  var path = window._factory.id + '/' + Date.now() + '-' + file.name;
+
+  var { data, error } = await window._sb.storage.from('factory-photos').upload(path, file);
+  if (error) { alert('Upload failed: ' + error.message); return; }
+
+  var { data: urlData } = window._sb.storage.from('factory-photos').getPublicUrl(path);
+  var url = urlData.publicUrl;
+
+  await window._sb.from('factory_photos').insert([{ factory_id: window._factory.id, url: url }]);
+
+  // Show in grid
+  var photoGrid = document.querySelector('#page-photos .photo-grid') || document.querySelector('#page-photos .card-body');
+  if (photoGrid) {
+    var div = document.createElement('div');
+    div.style.cssText = 'position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#f5f5f5;';
+    div.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover;">';
+    photoGrid.insertBefore(div, photoGrid.firstChild);
+  }
+  alert('Photo uploaded successfully!');
+}
+
+async function deletePhoto(id, url) {
+  if (!window._sb || !confirm('Delete this photo?')) return;
+  await window._sb.from('factory_photos').delete().eq('id', id);
+  var path = url.split('/factory-photos/')[1];
+  if (path) await window._sb.storage.from('factory-photos').remove([path]);
+  location.reload();
+}
 
 function logout() {
   localStorage.removeItem('mex_token');
@@ -582,5 +774,6 @@ function logout() {
   window.location.href = 'index.html';
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>

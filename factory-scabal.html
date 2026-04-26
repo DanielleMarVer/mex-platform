@@ -368,6 +368,29 @@ function sendEnquiry(factory) {
   const brand = document.getElementById('c-brand').value.trim();
   const msg = document.getElementById('c-msg').value.trim();
   if (!name || !email || !brand || !msg) { alert('Please fill in all required fields.'); return; }
+
+  // Save to Supabase
+  const SUPABASE_URL = 'https://fqbaxqclrigvopavuxrf.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxYmF4cWNscmlndm9wYXZ1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NDE0MjEsImV4cCI6MjA5MjUxNzQyMX0.SqpXz3_TiNNiC2QIM5UCKyZeG2WyiKDmi-6d4eik6Oo';
+  
+  fetch(SUPABASE_URL + '/rest/v1/enquiries', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      factory_name: factory,
+      sender_name: name,
+      sender_email: email,
+      company: brand,
+      message: msg,
+      status: 'new'
+    })
+  }).catch(e => console.log('Enquiry save error:', e));
+
   document.getElementById('success-msg').style.display = 'block';
   document.getElementById('c-name').value = '';
   document.getElementById('c-brand').value = '';
