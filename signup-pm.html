@@ -3,18 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TAC Creative Manufacturing — MEx.</title>
+<title>Join as an Industry Specialist — MEx.</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<meta name="description" content="TAC Creative Manufacturing — verified cut & sew manufacturer in Portugal on MEx. MOQ 100 units. Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.">
-<meta name="keywords" content="manufacturing marketplace, factories, Portugal, clothing manufacturers, textile factories, private label, knitwear, outerwear">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="TAC Creative Manufacturing — MEx.">
-<meta property="og:description" content="TAC Creative Manufacturing — verified cut & sew manufacturer in Portugal on MEx. MOQ 100 units. Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MEx. — The Manufacturing Exchange">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TAC Creative Manufacturing — MEx.">
-<meta name="twitter:description" content="TAC Creative Manufacturing — verified cut & sew manufacturer in Portugal on MEx. MOQ 100 units. Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;color:#111;background:#fff;overflow-x:clip;width:100%;}
@@ -102,7 +92,7 @@ section{padding:72px 48px;}
 .contact-form input,.contact-form textarea{width:100%;padding:11px 14px;border:1px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;color:#111;margin-bottom:12px;background:#fff;}
 .contact-form input:focus,.contact-form textarea:focus{border-color:#1A35D4;box-shadow:0 0 0 3px rgba(26,53,212,0.08);}
 .contact-form textarea{height:100px;resize:vertical;}
-.checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;font-size:13px;color:#555;line-height:1.5;width:100%;}
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;font-size:13px;color:#555;line-height:1.5;}
 .checkbox-row input[type=checkbox]{margin-top:2px;accent-color:#1A35D4;flex-shrink:0;}
 .send-btn{width:100%;background:#1A35D4;color:#fff;border:none;padding:13px;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;}
 .send-btn:hover{opacity:0.88;}
@@ -204,6 +194,28 @@ select:focus {
 }
 
 
+.dd-wrap{position:relative;display:inline-block;}
+.dd-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border:1px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;color:#111;background:#fff;cursor:pointer;white-space:nowrap;user-select:none;min-width:160px;}
+.dd-btn:hover{border-color:#1A35D4;}
+.dd-btn.open{border-color:#1A35D4;box-shadow:0 0 0 3px rgba(26,53,212,0.08);}
+.dd-btn.open .dd-arrow{transform:rotate(180deg);}
+.dd-arrow{transition:transform 0.2s;flex-shrink:0;}
+.dd-panel{position:absolute;top:calc(100% + 6px);left:0;background:#fff;border:1px solid #e0e0e0;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.10);z-index:999;min-width:100%;overflow:hidden;display:none;flex-direction:column;}
+.dd-panel.open{display:flex;}
+.dd-search-box{padding:12px 14px 8px;border-bottom:1px solid #f0f0f0;flex-shrink:0;}
+.dd-search-box input{width:100%;border:1px solid #e0e0e0;border-radius:8px;padding:8px 12px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:#111;}
+.dd-search-box input:focus{border-color:#1A35D4;}
+.dd-list{overflow-y:auto;max-height:260px;padding:6px 0;}
+.dd-all{padding:9px 16px;font-size:14px;color:#1A35D4;font-weight:500;cursor:pointer;border-bottom:1px solid #f0f0f0;margin-bottom:4px;}
+.dd-all:hover{background:#f5f7ff;}
+.dd-item{padding:9px 16px;font-size:14px;color:#111;cursor:pointer;}
+.dd-item:hover{background:#f5f7ff;color:#1A35D4;}
+.dd-item.selected{background:#EEF2FF;color:#1A35D4;font-weight:500;}
+.dd-item.dd-hidden{display:none;}
+.dd-wrap.full{display:block;}
+.dd-wrap.full .dd-btn{width:100%;}
+
+
 /* LAYOUT CONSISTENCY */
 html { margin: 0; padding: 0; overflow-x: clip; } body { margin: 0; padding: 0; }
 .w-full { width: 100%; }
@@ -217,6 +229,27 @@ html { margin: 0; padding: 0; overflow-x: clip; } body { margin: 0; padding: 0; 
 section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
 .profile-header { background: #1A35D4; padding: 48px; display: flex; gap: 28px; align-items: flex-start; width: 100%; box-sizing: border-box; }
 
+</style>
+<style>
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+.tag-btn{font-size:13px;padding:7px 14px;border:1.5px solid #e0e0e0;border-radius:20px;background:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;color:#555;transition:all 0.15s;}
+.tag-btn:hover{border-color:#1A35D4;color:#1A35D4;}
+.tag-btn.selected{border-color:#1A35D4;background:#f5f7ff;color:#1A35D4;font-weight:500;}
+.tag-btn.main-selected{border-color:#1A35D4;background:#1A35D4;color:#fff;font-weight:500;}
+.role-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:8px;}
+.role-card{border:2px solid #e0e0e0;border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.role-card:hover{border-color:#1A35D4;background:#f5f7ff;}
+.role-card.selected{border-color:#1A35D4;background:#f5f7ff;}
+.role-card-title{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;}
+.role-card-desc{font-size:12px;color:#777;line-height:1.4;}
+.selected-countries{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.country-pill{font-size:13px;padding:5px 12px;background:#f5f7ff;border:1px solid #e8ecff;border-radius:20px;color:#1A35D4;display:flex;align-items:center;gap:6px;}
+.country-pill-remove{background:none;border:none;color:#aaa;cursor:pointer;font-size:14px;line-height:1;padding:0;}
+.country-pill-remove:hover{color:#e53e3e;}
+.main-count{font-size:12px;color:#1A35D4;font-weight:500;}
+.section-divider{border:none;border-top:1px solid #f0f0f0;margin:28px 0;}
+.section-title-lg{font-size:16px;font-weight:600;color:#111;margin-bottom:4px;}
+.section-sub{font-size:13px;color:#aaa;margin-bottom:16px;}
 </style>
 </head>
 <body>
@@ -236,77 +269,491 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
     <a href="signup.html" class="nav-btn">List your factory</a>
   </div>
 </nav>
+<div class="page-hero">
+  <h1>Join MEx. as an Industry Specialist</h1>
+  <p>List your profile as a Production Manager or Product Developer and connect with fashion brands worldwide. &euro;29/month after approval.</p>
+</div>
 
-<div class="profile-header">
-  <div class="profile-avatar" style="font-size:36px;">🇵🇹</div>
-  <div>
-    <div class="profile-name">TAC Creative Manufacturing</div>
-    <div class="profile-loc">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Santo Tirso, Portugal
+<div style="max-width:700px;margin:64px auto;padding:0 48px 64px;">
+  <div id="signup-success" style="display:none;background:#d4f5f0;border:1px solid #a0e8d8;border-radius:14px;padding:24px;margin-bottom:28px;color:#0a7c6e;">
+    <strong>Application received!</strong><br>Thank you for applying. We review every application manually and will be in touch within 3&ndash;5 business days.
+  </div>
+
+  <div class="section-title-lg">Personal details</div>
+  <div class="section-sub">Your basic information.</div>
+  <div class="form-group"><label>Full name *</label><input class="form-input" id="pm-name" placeholder="Your full name"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div class="form-group"><label>Email address *</label><input class="form-input" id="pm-email" type="email" placeholder="you@example.com"></div>
+    <div class="form-group"><label>Phone number</label><input class="form-input" id="pm-phone" placeholder="+351 912 345 678"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div class="form-group"><label>City</label><input class="form-input" id="pm-city" placeholder="e.g. Porto"></div>
+    <div class="form-group"><label>Based in (country) *</label><div class="dd-wrap full" id="pm-base-wrap">
+  <div class="dd-btn" id="pm-base-btn">
+    <span class="dd-label">Select your country</span>
+    <svg class="dd-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+  <div class="dd-panel" id="pm-base-panel">
+    <div class="dd-search-box"><input type="text" id="pm-base-search" placeholder="Search..."></div>
+    <div class="dd-list" id="pm-base-list"><div class="dd-all" data-default="Select your country">Select your country</div>
+<div class="dd-item" data-value="afghanistan">Afghanistan</div>
+<div class="dd-item" data-value="albania">Albania</div>
+<div class="dd-item" data-value="algeria">Algeria</div>
+<div class="dd-item" data-value="andorra">Andorra</div>
+<div class="dd-item" data-value="angola">Angola</div>
+<div class="dd-item" data-value="antigua and barbuda">Antigua and Barbuda</div>
+<div class="dd-item" data-value="argentina">Argentina</div>
+<div class="dd-item" data-value="armenia">Armenia</div>
+<div class="dd-item" data-value="australia">Australia</div>
+<div class="dd-item" data-value="austria">Austria</div>
+<div class="dd-item" data-value="azerbaijan">Azerbaijan</div>
+<div class="dd-item" data-value="bahamas">Bahamas</div>
+<div class="dd-item" data-value="bahrain">Bahrain</div>
+<div class="dd-item" data-value="bangladesh">Bangladesh</div>
+<div class="dd-item" data-value="barbados">Barbados</div>
+<div class="dd-item" data-value="belarus">Belarus</div>
+<div class="dd-item" data-value="belgium">Belgium</div>
+<div class="dd-item" data-value="belize">Belize</div>
+<div class="dd-item" data-value="benin">Benin</div>
+<div class="dd-item" data-value="bhutan">Bhutan</div>
+<div class="dd-item" data-value="bolivia">Bolivia</div>
+<div class="dd-item" data-value="bosnia and herzegovina">Bosnia and Herzegovina</div>
+<div class="dd-item" data-value="botswana">Botswana</div>
+<div class="dd-item" data-value="brazil">Brazil</div>
+<div class="dd-item" data-value="brunei">Brunei</div>
+<div class="dd-item" data-value="bulgaria">Bulgaria</div>
+<div class="dd-item" data-value="burkina faso">Burkina Faso</div>
+<div class="dd-item" data-value="burundi">Burundi</div>
+<div class="dd-item" data-value="cambodia">Cambodia</div>
+<div class="dd-item" data-value="cameroon">Cameroon</div>
+<div class="dd-item" data-value="canada">Canada</div>
+<div class="dd-item" data-value="cape verde">Cape Verde</div>
+<div class="dd-item" data-value="central african republic">Central African Republic</div>
+<div class="dd-item" data-value="chad">Chad</div>
+<div class="dd-item" data-value="chile">Chile</div>
+<div class="dd-item" data-value="china">China</div>
+<div class="dd-item" data-value="colombia">Colombia</div>
+<div class="dd-item" data-value="comoros">Comoros</div>
+<div class="dd-item" data-value="congo">Congo</div>
+<div class="dd-item" data-value="costa rica">Costa Rica</div>
+<div class="dd-item" data-value="croatia">Croatia</div>
+<div class="dd-item" data-value="cuba">Cuba</div>
+<div class="dd-item" data-value="cyprus">Cyprus</div>
+<div class="dd-item" data-value="czech republic">Czech Republic</div>
+<div class="dd-item" data-value="denmark">Denmark</div>
+<div class="dd-item" data-value="djibouti">Djibouti</div>
+<div class="dd-item" data-value="dominican republic">Dominican Republic</div>
+<div class="dd-item" data-value="ecuador">Ecuador</div>
+<div class="dd-item" data-value="egypt">Egypt</div>
+<div class="dd-item" data-value="el salvador">El Salvador</div>
+<div class="dd-item" data-value="equatorial guinea">Equatorial Guinea</div>
+<div class="dd-item" data-value="eritrea">Eritrea</div>
+<div class="dd-item" data-value="estonia">Estonia</div>
+<div class="dd-item" data-value="eswatini">Eswatini</div>
+<div class="dd-item" data-value="ethiopia">Ethiopia</div>
+<div class="dd-item" data-value="fiji">Fiji</div>
+<div class="dd-item" data-value="finland">Finland</div>
+<div class="dd-item" data-value="france">France</div>
+<div class="dd-item" data-value="gabon">Gabon</div>
+<div class="dd-item" data-value="gambia">Gambia</div>
+<div class="dd-item" data-value="georgia">Georgia</div>
+<div class="dd-item" data-value="germany">Germany</div>
+<div class="dd-item" data-value="ghana">Ghana</div>
+<div class="dd-item" data-value="greece">Greece</div>
+<div class="dd-item" data-value="grenada">Grenada</div>
+<div class="dd-item" data-value="guatemala">Guatemala</div>
+<div class="dd-item" data-value="guinea">Guinea</div>
+<div class="dd-item" data-value="guinea-bissau">Guinea-Bissau</div>
+<div class="dd-item" data-value="guyana">Guyana</div>
+<div class="dd-item" data-value="haiti">Haiti</div>
+<div class="dd-item" data-value="honduras">Honduras</div>
+<div class="dd-item" data-value="hungary">Hungary</div>
+<div class="dd-item" data-value="iceland">Iceland</div>
+<div class="dd-item" data-value="india">India</div>
+<div class="dd-item" data-value="indonesia">Indonesia</div>
+<div class="dd-item" data-value="iran">Iran</div>
+<div class="dd-item" data-value="iraq">Iraq</div>
+<div class="dd-item" data-value="ireland">Ireland</div>
+<div class="dd-item" data-value="italy">Italy</div>
+<div class="dd-item" data-value="jamaica">Jamaica</div>
+<div class="dd-item" data-value="japan">Japan</div>
+<div class="dd-item" data-value="jordan">Jordan</div>
+<div class="dd-item" data-value="kazakhstan">Kazakhstan</div>
+<div class="dd-item" data-value="kenya">Kenya</div>
+<div class="dd-item" data-value="kosovo">Kosovo</div>
+<div class="dd-item" data-value="kuwait">Kuwait</div>
+<div class="dd-item" data-value="kyrgyzstan">Kyrgyzstan</div>
+<div class="dd-item" data-value="laos">Laos</div>
+<div class="dd-item" data-value="latvia">Latvia</div>
+<div class="dd-item" data-value="lebanon">Lebanon</div>
+<div class="dd-item" data-value="lesotho">Lesotho</div>
+<div class="dd-item" data-value="liberia">Liberia</div>
+<div class="dd-item" data-value="libya">Libya</div>
+<div class="dd-item" data-value="liechtenstein">Liechtenstein</div>
+<div class="dd-item" data-value="lithuania">Lithuania</div>
+<div class="dd-item" data-value="luxembourg">Luxembourg</div>
+<div class="dd-item" data-value="madagascar">Madagascar</div>
+<div class="dd-item" data-value="malawi">Malawi</div>
+<div class="dd-item" data-value="malaysia">Malaysia</div>
+<div class="dd-item" data-value="maldives">Maldives</div>
+<div class="dd-item" data-value="mali">Mali</div>
+<div class="dd-item" data-value="malta">Malta</div>
+<div class="dd-item" data-value="mauritania">Mauritania</div>
+<div class="dd-item" data-value="mauritius">Mauritius</div>
+<div class="dd-item" data-value="mexico">Mexico</div>
+<div class="dd-item" data-value="moldova">Moldova</div>
+<div class="dd-item" data-value="monaco">Monaco</div>
+<div class="dd-item" data-value="mongolia">Mongolia</div>
+<div class="dd-item" data-value="montenegro">Montenegro</div>
+<div class="dd-item" data-value="morocco">Morocco</div>
+<div class="dd-item" data-value="mozambique">Mozambique</div>
+<div class="dd-item" data-value="myanmar">Myanmar</div>
+<div class="dd-item" data-value="namibia">Namibia</div>
+<div class="dd-item" data-value="nepal">Nepal</div>
+<div class="dd-item" data-value="netherlands">Netherlands</div>
+<div class="dd-item" data-value="new zealand">New Zealand</div>
+<div class="dd-item" data-value="nicaragua">Nicaragua</div>
+<div class="dd-item" data-value="niger">Niger</div>
+<div class="dd-item" data-value="nigeria">Nigeria</div>
+<div class="dd-item" data-value="north macedonia">North Macedonia</div>
+<div class="dd-item" data-value="norway">Norway</div>
+<div class="dd-item" data-value="oman">Oman</div>
+<div class="dd-item" data-value="pakistan">Pakistan</div>
+<div class="dd-item" data-value="palestine">Palestine</div>
+<div class="dd-item" data-value="panama">Panama</div>
+<div class="dd-item" data-value="papua new guinea">Papua New Guinea</div>
+<div class="dd-item" data-value="paraguay">Paraguay</div>
+<div class="dd-item" data-value="peru">Peru</div>
+<div class="dd-item" data-value="philippines">Philippines</div>
+<div class="dd-item" data-value="poland">Poland</div>
+<div class="dd-item" data-value="portugal">Portugal</div>
+<div class="dd-item" data-value="qatar">Qatar</div>
+<div class="dd-item" data-value="romania">Romania</div>
+<div class="dd-item" data-value="russia">Russia</div>
+<div class="dd-item" data-value="rwanda">Rwanda</div>
+<div class="dd-item" data-value="saudi arabia">Saudi Arabia</div>
+<div class="dd-item" data-value="senegal">Senegal</div>
+<div class="dd-item" data-value="serbia">Serbia</div>
+<div class="dd-item" data-value="sierra leone">Sierra Leone</div>
+<div class="dd-item" data-value="singapore">Singapore</div>
+<div class="dd-item" data-value="slovakia">Slovakia</div>
+<div class="dd-item" data-value="slovenia">Slovenia</div>
+<div class="dd-item" data-value="somalia">Somalia</div>
+<div class="dd-item" data-value="south africa">South Africa</div>
+<div class="dd-item" data-value="south korea">South Korea</div>
+<div class="dd-item" data-value="south sudan">South Sudan</div>
+<div class="dd-item" data-value="spain">Spain</div>
+<div class="dd-item" data-value="sri lanka">Sri Lanka</div>
+<div class="dd-item" data-value="sudan">Sudan</div>
+<div class="dd-item" data-value="sweden">Sweden</div>
+<div class="dd-item" data-value="switzerland">Switzerland</div>
+<div class="dd-item" data-value="syria">Syria</div>
+<div class="dd-item" data-value="taiwan">Taiwan</div>
+<div class="dd-item" data-value="tajikistan">Tajikistan</div>
+<div class="dd-item" data-value="tanzania">Tanzania</div>
+<div class="dd-item" data-value="thailand">Thailand</div>
+<div class="dd-item" data-value="togo">Togo</div>
+<div class="dd-item" data-value="trinidad and tobago">Trinidad and Tobago</div>
+<div class="dd-item" data-value="tunisia">Tunisia</div>
+<div class="dd-item" data-value="turkey">Turkey</div>
+<div class="dd-item" data-value="turkmenistan">Turkmenistan</div>
+<div class="dd-item" data-value="uganda">Uganda</div>
+<div class="dd-item" data-value="ukraine">Ukraine</div>
+<div class="dd-item" data-value="united arab emirates">United Arab Emirates</div>
+<div class="dd-item" data-value="united kingdom">United Kingdom</div>
+<div class="dd-item" data-value="united states">United States</div>
+<div class="dd-item" data-value="uruguay">Uruguay</div>
+<div class="dd-item" data-value="uzbekistan">Uzbekistan</div>
+<div class="dd-item" data-value="venezuela">Venezuela</div>
+<div class="dd-item" data-value="vietnam">Vietnam</div>
+<div class="dd-item" data-value="yemen">Yemen</div>
+<div class="dd-item" data-value="zambia">Zambia</div>
+<div class="dd-item" data-value="zimbabwe">Zimbabwe</div>
+</div>
+  </div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div class="form-group"><label>Years of experience *</label><input class="form-input" id="pm-experience" placeholder="e.g. 12 years"></div>
+    <div class="form-group"><label>Day rate</label><input class="form-input" id="pm-rate" placeholder="e.g. Rate on request"></div>
+  </div>
+  <div class="form-group"><label>Languages spoken *</label><input class="form-input" id="pm-languages" placeholder="e.g. English, Portuguese, French"></div>
+  <div class="form-group"><label>LinkedIn profile (optional)</label><input class="form-input" id="pm-linkedin" placeholder="https://linkedin.com/in/yourname"></div>
+
+  <hr class="section-divider">
+  <div class="section-title-lg">Your role *</div>
+  <div class="section-sub">Select the option that best describes what you do.</div>
+  <div class="role-cards">
+    <div class="role-card" id="role-pm" onclick="selectRole('pm')">
+      <div class="role-card-title">Production Manager</div>
+      <div class="role-card-desc">Factory sourcing, production oversight, QC, delivery</div>
     </div>
-    <div class="ftags"><span class="ftag" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);">Cut & Sew</span><span class="ftag" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);">Knitwear</span><span class="ftag" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);">Outerwear</span></div>
-  </div>
-</div>
-<div class="profile-body">
-  <div>
-    <div class="profile-section-title">About this factory</div>
-    <div class="profile-desc">Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.</div>
-    <div class="profile-section-title">Factory details</div>
-    <div class="info-row"><span class="info-label">Country</span><span class="info-value">Portugal</span></div>
-    <div class="info-row"><span class="info-label">Location</span><span class="info-value">Santo Tirso</span></div>
-    <div class="info-row"><span class="info-label">Factory size</span><span class="info-value">Medium — 50 to 200 employees</span></div>
-    <div class="info-row"><span class="info-label">Minimum order</span><span class="info-value">100 units</span></div>
-    <div class="info-row"><span class="info-label">Website</span><span class="info-value"><a href="https://tac.pt" target="_blank" style="color:#1A35D4;">tac.pt</a></span></div>
-    <div class="profile-section-title">Certifications</div>
-    <div><span class="cert-pill">ISO 9001</span><span class="cert-pill">OEKO-TEX</span></div>
-    <div class="profile-section-title">Product categories</div>
-    <div class="ftags"><span class="ftag">Cut & Sew</span><span class="ftag">Knitwear</span><span class="ftag">Outerwear</span></div>
-    <div class="profile-section-title">Export markets</div><div><span class="export-tag">United Kingdom</span><span class="export-tag">France</span><span class="export-tag">Germany</span></div>
-    <div class="profile-section-title">Photo gallery</div>
-    <div class="photo-gallery"><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 1</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 2</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 3</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 4</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 5</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 6</span></div></div>
-  </div>
-  <div>
-    <div class="contact-card">
-      <div class="success-msg" id="success-msg">Your enquiry has been sent to MEx. The factory will be in touch with you directly.</div>
-      <h3>Contact this factory</h3>
-      <p>Send your brief to TAC Creative Manufacturing. MEx. will forward it to the factory who will then contact you directly.</p>
-      <div class="contact-form">
-        <input type="text" id="c-name" placeholder="Your name *">
-        <input type="text" id="c-brand" placeholder="Your brand name *">
-        <input type="email" id="c-email" placeholder="Your email address *">
-        <textarea id="c-msg" placeholder="Describe your project — product type, quantities, timeline, any specific requirements..."></textarea>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:10px 12px;background:#f5f7ff;border-radius:8px;border:1px solid #e8ecff;"><input type="checkbox" id="c-newsletter" checked style="accent-color:#1A35D4;flex-shrink:0;width:14px;height:14px;"><label for="c-newsletter" style="font-size:13px;color:#555;line-height:1.4;cursor:pointer;">Keep me updated with new factories and news from MEx.</label></div>
-        <button class="save-btn-factory" id="save-factory-btn" onclick="saveFactory()" style="width:100%;background:transparent;color:#1A35D4;border:1.5px solid #1A35D4;padding:11px;border-radius:50px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;margin-bottom:10px;">♡ Save factory</button>
-      <button class="send-btn" onclick="sendEnquiry('TAC Creative Manufacturing')">Send enquiry</button>
-      </div>
-      <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e8ecff;">
-        <a href="https://tac.pt" target="_blank" style="font-size:13px;color:#1A35D4;display:block;margin-bottom:8px;">tac.pt →</a>
-        <a href="tel:+351 252 499 000" style="font-size:13px;color:#666;">+351 252 499 000</a>
-      </div>
+    <div class="role-card" id="role-pd" onclick="selectRole('pd')">
+      <div class="role-card-title">Product Developer</div>
+      <div class="role-card-desc">Range building, tech packs, fabric and trim sourcing</div>
+    </div>
+    <div class="role-card selected" id="role-both" onclick="selectRole('both')">
+      <div class="role-card-title">Both</div>
+      <div class="role-card-desc">Production management and product development</div>
     </div>
   </div>
-</div>
-<div class="cta-band">
-  <h2>Need help managing production?</h2>
-  <p>Our production managers can handle the entire process — from sourcing to final delivery.</p>
-  <div style="display:flex;gap:12px;justify-content:center;"><a href="for-brands.html" class="btn-white">Learn more</a></div>
-</div>
-<div style="background:#1A35D4;padding:72px 48px;text-align:center;">
-  <div style="max-width:560px;margin:0 auto;">
-    <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Stay in the loop</div>
-    <div style="font-size:36px;font-weight:600;color:#fff;letter-spacing:-0.8px;line-height:1.1;margin-bottom:14px;">New factories. Industry news.<br>Straight to your inbox.</div>
-    <div style="font-size:16px;color:rgba(255,255,255,0.7);margin-bottom:32px;line-height:1.7;">Join brands already using MEx. to find the right manufacturing partners worldwide.</div>
-    <div style="display:flex;gap:0;max-width:440px;margin:0 auto;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);border-radius:50px;overflow:hidden;padding:6px 6px 6px 20px;align-items:center;">
-      <input type="email" id="nl-email" placeholder="Your email address" style="flex:1;border:none;outline:none;font-size:14px;font-family:'DM Sans',sans-serif;color:#fff;background:transparent;min-width:0;">
-      <button onclick="subscribeNewsletter()" style="background:#fff;color:#1A35D4;border:none;padding:10px 24px;border-radius:50px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:600;white-space:nowrap;flex-shrink:0;">Subscribe</button>
-    </div>
-    <div id="nl-success" style="display:none;margin-top:16px;font-size:14px;color:rgba(255,255,255,0.9);">You are on the list. Welcome to MEx.</div>
-    <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:16px;">No spam. Unsubscribe any time.</div>
+
+  <hr class="section-divider">
+  <div class="section-title-lg">Main categories <span class="main-count" id="main-count">(0/3 selected)</span></div>
+  <div class="section-sub">Select up to 3 categories that best represent your primary expertise. These appear on your listing card.</div>
+  <div class="tag-cloud" id="main-tags"><button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Ladieswear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Menswear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Childrenswear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Eveningwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Bridal and Couture</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Knitwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Denim</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Outerwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Coats and Jackets</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Swimwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Lingerie and Underwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Sportswear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Activewear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Sports Luxe</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Uniforms and Workwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Leather Goods</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Handbags</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Footwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Accessories</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Jewellery</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Hats and Headwear</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Scarves and Textiles</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Luxury and High End</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Contemporary</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Mass Market</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'main')">Premium</button></div>
+  <input style="width:100%;padding:10px 16px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;margin-top:8px;" id="main-other" placeholder="Other &mdash; type your own and press Enter" onkeydown="addOther(event,'main')">
+
+  <hr class="section-divider">
+  <div class="section-title-lg">Additional areas of expertise</div>
+  <div class="section-sub">Select everything else that applies. Unlimited &mdash; these appear on your full profile.</div>
+  <div class="tag-cloud" id="specialism-tags"><button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Product Development</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Production Management</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Factory Sourcing</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Quality Control</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Sampling</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Tech Packs</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Range Building</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Cost Negotiation</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Production Planning</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Fabric Sourcing</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Trim Sourcing</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Sustainable Production</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Ethical Sourcing</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Certifications GOTS OEKO-TEX</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Private Label</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Cut and Sew</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Woven</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Jersey</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Technical Fabrics</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Luxury Production</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Supply Chain Management</button>
+<button type="button" class="tag-btn" onclick="toggleTag(this,'specialism')">Fit and Construction</button></div>
+  <input style="width:100%;padding:10px 16px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;margin-top:8px;" id="specialism-other" placeholder="Other &mdash; type your own and press Enter" onkeydown="addOther(event,'specialism')">
+
+  <hr class="section-divider">
+  <div class="section-title-lg">Countries you work in *</div>
+  <div class="section-sub">Select all countries where you have factory knowledge. You can select multiple.</div>
+  <div class="dd-wrap full" id="pm-work-wrap">
+  <div class="dd-btn" id="pm-work-btn">
+    <span class="dd-label">Select countries (click to add multiple)</span>
+    <svg class="dd-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
   </div>
+  <div class="dd-panel" id="pm-work-panel">
+    <div class="dd-search-box"><input type="text" id="pm-work-search" placeholder="Search..."></div>
+    <div class="dd-list" id="pm-work-list"><div class="dd-all" data-default="Select countries (click to add multiple)">Select countries (click to add multiple)</div>
+<div class="dd-item" data-value="afghanistan">Afghanistan</div>
+<div class="dd-item" data-value="albania">Albania</div>
+<div class="dd-item" data-value="algeria">Algeria</div>
+<div class="dd-item" data-value="andorra">Andorra</div>
+<div class="dd-item" data-value="angola">Angola</div>
+<div class="dd-item" data-value="antigua and barbuda">Antigua and Barbuda</div>
+<div class="dd-item" data-value="argentina">Argentina</div>
+<div class="dd-item" data-value="armenia">Armenia</div>
+<div class="dd-item" data-value="australia">Australia</div>
+<div class="dd-item" data-value="austria">Austria</div>
+<div class="dd-item" data-value="azerbaijan">Azerbaijan</div>
+<div class="dd-item" data-value="bahamas">Bahamas</div>
+<div class="dd-item" data-value="bahrain">Bahrain</div>
+<div class="dd-item" data-value="bangladesh">Bangladesh</div>
+<div class="dd-item" data-value="barbados">Barbados</div>
+<div class="dd-item" data-value="belarus">Belarus</div>
+<div class="dd-item" data-value="belgium">Belgium</div>
+<div class="dd-item" data-value="belize">Belize</div>
+<div class="dd-item" data-value="benin">Benin</div>
+<div class="dd-item" data-value="bhutan">Bhutan</div>
+<div class="dd-item" data-value="bolivia">Bolivia</div>
+<div class="dd-item" data-value="bosnia and herzegovina">Bosnia and Herzegovina</div>
+<div class="dd-item" data-value="botswana">Botswana</div>
+<div class="dd-item" data-value="brazil">Brazil</div>
+<div class="dd-item" data-value="brunei">Brunei</div>
+<div class="dd-item" data-value="bulgaria">Bulgaria</div>
+<div class="dd-item" data-value="burkina faso">Burkina Faso</div>
+<div class="dd-item" data-value="burundi">Burundi</div>
+<div class="dd-item" data-value="cambodia">Cambodia</div>
+<div class="dd-item" data-value="cameroon">Cameroon</div>
+<div class="dd-item" data-value="canada">Canada</div>
+<div class="dd-item" data-value="cape verde">Cape Verde</div>
+<div class="dd-item" data-value="central african republic">Central African Republic</div>
+<div class="dd-item" data-value="chad">Chad</div>
+<div class="dd-item" data-value="chile">Chile</div>
+<div class="dd-item" data-value="china">China</div>
+<div class="dd-item" data-value="colombia">Colombia</div>
+<div class="dd-item" data-value="comoros">Comoros</div>
+<div class="dd-item" data-value="congo">Congo</div>
+<div class="dd-item" data-value="costa rica">Costa Rica</div>
+<div class="dd-item" data-value="croatia">Croatia</div>
+<div class="dd-item" data-value="cuba">Cuba</div>
+<div class="dd-item" data-value="cyprus">Cyprus</div>
+<div class="dd-item" data-value="czech republic">Czech Republic</div>
+<div class="dd-item" data-value="denmark">Denmark</div>
+<div class="dd-item" data-value="djibouti">Djibouti</div>
+<div class="dd-item" data-value="dominican republic">Dominican Republic</div>
+<div class="dd-item" data-value="ecuador">Ecuador</div>
+<div class="dd-item" data-value="egypt">Egypt</div>
+<div class="dd-item" data-value="el salvador">El Salvador</div>
+<div class="dd-item" data-value="equatorial guinea">Equatorial Guinea</div>
+<div class="dd-item" data-value="eritrea">Eritrea</div>
+<div class="dd-item" data-value="estonia">Estonia</div>
+<div class="dd-item" data-value="eswatini">Eswatini</div>
+<div class="dd-item" data-value="ethiopia">Ethiopia</div>
+<div class="dd-item" data-value="fiji">Fiji</div>
+<div class="dd-item" data-value="finland">Finland</div>
+<div class="dd-item" data-value="france">France</div>
+<div class="dd-item" data-value="gabon">Gabon</div>
+<div class="dd-item" data-value="gambia">Gambia</div>
+<div class="dd-item" data-value="georgia">Georgia</div>
+<div class="dd-item" data-value="germany">Germany</div>
+<div class="dd-item" data-value="ghana">Ghana</div>
+<div class="dd-item" data-value="greece">Greece</div>
+<div class="dd-item" data-value="grenada">Grenada</div>
+<div class="dd-item" data-value="guatemala">Guatemala</div>
+<div class="dd-item" data-value="guinea">Guinea</div>
+<div class="dd-item" data-value="guinea-bissau">Guinea-Bissau</div>
+<div class="dd-item" data-value="guyana">Guyana</div>
+<div class="dd-item" data-value="haiti">Haiti</div>
+<div class="dd-item" data-value="honduras">Honduras</div>
+<div class="dd-item" data-value="hungary">Hungary</div>
+<div class="dd-item" data-value="iceland">Iceland</div>
+<div class="dd-item" data-value="india">India</div>
+<div class="dd-item" data-value="indonesia">Indonesia</div>
+<div class="dd-item" data-value="iran">Iran</div>
+<div class="dd-item" data-value="iraq">Iraq</div>
+<div class="dd-item" data-value="ireland">Ireland</div>
+<div class="dd-item" data-value="italy">Italy</div>
+<div class="dd-item" data-value="jamaica">Jamaica</div>
+<div class="dd-item" data-value="japan">Japan</div>
+<div class="dd-item" data-value="jordan">Jordan</div>
+<div class="dd-item" data-value="kazakhstan">Kazakhstan</div>
+<div class="dd-item" data-value="kenya">Kenya</div>
+<div class="dd-item" data-value="kosovo">Kosovo</div>
+<div class="dd-item" data-value="kuwait">Kuwait</div>
+<div class="dd-item" data-value="kyrgyzstan">Kyrgyzstan</div>
+<div class="dd-item" data-value="laos">Laos</div>
+<div class="dd-item" data-value="latvia">Latvia</div>
+<div class="dd-item" data-value="lebanon">Lebanon</div>
+<div class="dd-item" data-value="lesotho">Lesotho</div>
+<div class="dd-item" data-value="liberia">Liberia</div>
+<div class="dd-item" data-value="libya">Libya</div>
+<div class="dd-item" data-value="liechtenstein">Liechtenstein</div>
+<div class="dd-item" data-value="lithuania">Lithuania</div>
+<div class="dd-item" data-value="luxembourg">Luxembourg</div>
+<div class="dd-item" data-value="madagascar">Madagascar</div>
+<div class="dd-item" data-value="malawi">Malawi</div>
+<div class="dd-item" data-value="malaysia">Malaysia</div>
+<div class="dd-item" data-value="maldives">Maldives</div>
+<div class="dd-item" data-value="mali">Mali</div>
+<div class="dd-item" data-value="malta">Malta</div>
+<div class="dd-item" data-value="mauritania">Mauritania</div>
+<div class="dd-item" data-value="mauritius">Mauritius</div>
+<div class="dd-item" data-value="mexico">Mexico</div>
+<div class="dd-item" data-value="moldova">Moldova</div>
+<div class="dd-item" data-value="monaco">Monaco</div>
+<div class="dd-item" data-value="mongolia">Mongolia</div>
+<div class="dd-item" data-value="montenegro">Montenegro</div>
+<div class="dd-item" data-value="morocco">Morocco</div>
+<div class="dd-item" data-value="mozambique">Mozambique</div>
+<div class="dd-item" data-value="myanmar">Myanmar</div>
+<div class="dd-item" data-value="namibia">Namibia</div>
+<div class="dd-item" data-value="nepal">Nepal</div>
+<div class="dd-item" data-value="netherlands">Netherlands</div>
+<div class="dd-item" data-value="new zealand">New Zealand</div>
+<div class="dd-item" data-value="nicaragua">Nicaragua</div>
+<div class="dd-item" data-value="niger">Niger</div>
+<div class="dd-item" data-value="nigeria">Nigeria</div>
+<div class="dd-item" data-value="north macedonia">North Macedonia</div>
+<div class="dd-item" data-value="norway">Norway</div>
+<div class="dd-item" data-value="oman">Oman</div>
+<div class="dd-item" data-value="pakistan">Pakistan</div>
+<div class="dd-item" data-value="palestine">Palestine</div>
+<div class="dd-item" data-value="panama">Panama</div>
+<div class="dd-item" data-value="papua new guinea">Papua New Guinea</div>
+<div class="dd-item" data-value="paraguay">Paraguay</div>
+<div class="dd-item" data-value="peru">Peru</div>
+<div class="dd-item" data-value="philippines">Philippines</div>
+<div class="dd-item" data-value="poland">Poland</div>
+<div class="dd-item" data-value="portugal">Portugal</div>
+<div class="dd-item" data-value="qatar">Qatar</div>
+<div class="dd-item" data-value="romania">Romania</div>
+<div class="dd-item" data-value="russia">Russia</div>
+<div class="dd-item" data-value="rwanda">Rwanda</div>
+<div class="dd-item" data-value="saudi arabia">Saudi Arabia</div>
+<div class="dd-item" data-value="senegal">Senegal</div>
+<div class="dd-item" data-value="serbia">Serbia</div>
+<div class="dd-item" data-value="sierra leone">Sierra Leone</div>
+<div class="dd-item" data-value="singapore">Singapore</div>
+<div class="dd-item" data-value="slovakia">Slovakia</div>
+<div class="dd-item" data-value="slovenia">Slovenia</div>
+<div class="dd-item" data-value="somalia">Somalia</div>
+<div class="dd-item" data-value="south africa">South Africa</div>
+<div class="dd-item" data-value="south korea">South Korea</div>
+<div class="dd-item" data-value="south sudan">South Sudan</div>
+<div class="dd-item" data-value="spain">Spain</div>
+<div class="dd-item" data-value="sri lanka">Sri Lanka</div>
+<div class="dd-item" data-value="sudan">Sudan</div>
+<div class="dd-item" data-value="sweden">Sweden</div>
+<div class="dd-item" data-value="switzerland">Switzerland</div>
+<div class="dd-item" data-value="syria">Syria</div>
+<div class="dd-item" data-value="taiwan">Taiwan</div>
+<div class="dd-item" data-value="tajikistan">Tajikistan</div>
+<div class="dd-item" data-value="tanzania">Tanzania</div>
+<div class="dd-item" data-value="thailand">Thailand</div>
+<div class="dd-item" data-value="togo">Togo</div>
+<div class="dd-item" data-value="trinidad and tobago">Trinidad and Tobago</div>
+<div class="dd-item" data-value="tunisia">Tunisia</div>
+<div class="dd-item" data-value="turkey">Turkey</div>
+<div class="dd-item" data-value="turkmenistan">Turkmenistan</div>
+<div class="dd-item" data-value="uganda">Uganda</div>
+<div class="dd-item" data-value="ukraine">Ukraine</div>
+<div class="dd-item" data-value="united arab emirates">United Arab Emirates</div>
+<div class="dd-item" data-value="united kingdom">United Kingdom</div>
+<div class="dd-item" data-value="united states">United States</div>
+<div class="dd-item" data-value="uruguay">Uruguay</div>
+<div class="dd-item" data-value="uzbekistan">Uzbekistan</div>
+<div class="dd-item" data-value="venezuela">Venezuela</div>
+<div class="dd-item" data-value="vietnam">Vietnam</div>
+<div class="dd-item" data-value="yemen">Yemen</div>
+<div class="dd-item" data-value="zambia">Zambia</div>
+<div class="dd-item" data-value="zimbabwe">Zimbabwe</div>
 </div>
-  <div id="nl-success" style="display:none;margin-top:16px;font-size:14px;color:#1A35D4;">You are on the list. Welcome to MEx.</div>
+  </div>
+  <div class="selected-countries" id="selected-countries"></div>
+
+  <hr class="section-divider">
+  <div class="section-title-lg">About you *</div>
+  <div class="section-sub">Tell brands about your experience and what makes you great at what you do.</div>
+  <div class="form-group">
+    <textarea class="form-input" id="pm-bio" style="height:160px;resize:vertical;" placeholder="I have X years of experience working with..."></textarea>
+  </div>
+
+  <button onclick="submitApplication()" style="width:100%;background:#1A35D4;color:#fff;border:none;padding:15px;border-radius:50px;font-size:15px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;" id="submit-btn">Submit application &mdash; &euro;29/month after approval</button>
+  <p style="font-size:13px;color:#aaa;text-align:center;margin-top:16px;">We review every application manually. You will not be charged until your profile is approved and live.</p>
 </div>
+
 <footer style="background:#fff;border-top:1px solid #f0f0f0;">
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:80px;padding:80px 48px 64px;">
     <div>
@@ -356,109 +803,200 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
     </div>
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-function subscribeNewsletter() {
-  const email = document.getElementById('nl-email').value.trim();
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  document.getElementById('nl-success').style.display = 'block';
-  document.getElementById('nl-email').value = '';
-}
+(function(){
+  window.MExDD = {
+    init: function(wrId, btnId, panelId, searchId, listId, onChange) {
+      var btn = document.getElementById(btnId);
+      var panel = document.getElementById(panelId);
+      var searchInput = searchId ? document.getElementById(searchId) : null;
+      if (!btn || !panel) return;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = panel.classList.contains('open');
+        window.MExDD.closeAll();
+        if (!isOpen) {
+          btn.classList.add('open');
+          panel.classList.add('open');
+          if (searchInput) { searchInput.value = ''; window.MExDD.filterList(listId, ''); searchInput.focus(); }
+        }
+      });
+      if (searchInput) {
+        searchInput.addEventListener('click', function(e){ e.stopPropagation(); });
+        searchInput.addEventListener('input', function(){ window.MExDD.filterList(listId, this.value); });
+      }
+      document.querySelectorAll('#' + listId + ' .dd-item').forEach(function(item){
+        item.addEventListener('click', function(e){
+          e.stopPropagation();
+          document.querySelectorAll('#' + listId + ' .dd-item').forEach(function(i){ i.classList.remove('selected'); });
+          item.classList.add('selected');
+          var label = btn.querySelector('.dd-label');
+          if (label) label.textContent = item.textContent;
+          window.MExDD.closeAll();
+          if (onChange) onChange(item.dataset.value);
+        });
+      });
+      var allBtn = document.querySelector('#' + listId + ' .dd-all');
+      if (allBtn) {
+        allBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          document.querySelectorAll('#' + listId + ' .dd-item').forEach(function(i){ i.classList.remove('selected'); });
+          var label = btn.querySelector('.dd-label');
+          if (label) label.textContent = allBtn.dataset.default || 'All';
+          window.MExDD.closeAll();
+          if (onChange) onChange('');
+        });
+      }
+    },
+    closeAll: function() {
+      document.querySelectorAll('.dd-btn').forEach(function(b){ b.classList.remove('open'); });
+      document.querySelectorAll('.dd-panel').forEach(function(p){ p.classList.remove('open'); });
+    },
+    filterList: function(listId, q) {
+      q = q.toLowerCase();
+      document.querySelectorAll('#' + listId + ' .dd-item').forEach(function(item){
+        item.classList.toggle('dd-hidden', q !== '' && !item.textContent.toLowerCase().includes(q));
+      });
+    },
+    getValue: function(listId) {
+      var sel = document.querySelector('#' + listId + ' .dd-item.selected');
+      return sel ? sel.dataset.value : '';
+    }
+  };
+  document.addEventListener('click', function(){ window.MExDD.closeAll(); });
+})();
+</script>
+
+
+<script>
 </script>
 <script>
-function sendEnquiry(factory) {
-  var name = document.getElementById('c-name').value.trim();
-  var email = document.getElementById('c-email').value.trim();
-  var brand = document.getElementById('c-brand').value.trim();
-  var msg = document.getElementById('c-msg').value.trim();
-  if (!name || !email || !brand || !msg) { alert('Please fill in all required fields.'); return; }
+var SUPABASE_URL = 'https://fqbaxqclrigvopavuxrf.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxYmF4cWNscmlndm9wYXZ1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NDE0MjEsImV4cCI6MjA5MjUxNzQyMX0.SqpXz3_TiNNiC2QIM5UCKyZeG2WyiKDmi-6d4eik6Oo';
 
-  var SUPABASE_URL = 'https://fqbaxqclrigvopavuxrf.supabase.co';
-  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxYmF4cWNscmlndm9wYXZ1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NDE0MjEsImV4cCI6MjA5MjUxNzQyMX0.SqpXz3_TiNNiC2QIM5UCKyZeG2WyiKDmi-6d4eik6Oo';
+var selectedRole = 'both';
+var mainSelected = [];
+var specialismSelected = [];
+var countriesSelected = [];
 
-  // 1. Save to Supabase
-  fetch(SUPABASE_URL + '/rest/v1/enquiries', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY,
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify({
-      factory_name: factory,
-      sender_name: name,
-      sender_email: email,
-      company: brand,
-      message: msg,
-      status: 'new'
-    })
-  }).catch(function(e) { console.log('Save error:', e); });
-
-  // 2. Send email notification via Resend API
-  fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer re_gPzJpwSi_BFm3QbrmzuwBHpBG86fv2fpH'
-    },
-    body: JSON.stringify({
-      from: 'MEx. <onboarding@resend.dev>',
-      to: ['daniellemargaux@icloud.com'],
-      reply_to: email,
-      subject: 'New enquiry for ' + factory + ' via MEx.',
-      html: '<div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:32px 20px;">' +
-        '<h2 style="color:#1A35D4;margin-bottom:4px;">New enquiry on MEx.</h2>' +
-        '<p style="color:#555;margin-bottom:24px;">A brand has contacted <strong>' + factory + '</strong> through MEx.</p>' +
-        '<div style="background:#f5f7ff;border-radius:12px;padding:24px;margin-bottom:24px;">' +
-          '<p style="margin:0 0 8px;"><strong>From:</strong> ' + name + '</p>' +
-          '<p style="margin:0 0 8px;"><strong>Brand:</strong> ' + brand + '</p>' +
-          '<p style="margin:0 0 8px;"><strong>Email:</strong> <a href="mailto:' + email + '" style="color:#1A35D4;">' + email + '</a></p>' +
-          '<p style="margin:0 0 8px;"><strong>Message:</strong></p>' +
-          '<p style="margin:0;color:#333;">' + msg + '</p>' +
-        '</div>' +
-        '<a href="mailto:' + email + '" style="background:#1A35D4;color:#fff;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:500;display:inline-block;">Reply to ' + name + '</a>' +
-        '<p style="color:#aaa;font-size:12px;margin-top:32px;">Sent via MEx. The Manufacturing Exchange</p>' +
-      '</div>'
-    })
-  }).catch(function(e) { console.log('Email error:', e); });
-
-  document.getElementById('success-msg').style.display = 'block';
-  document.getElementById('c-name').value = '';
-  document.getElementById('c-brand').value = '';
-  document.getElementById('c-email').value = '';
-  document.getElementById('c-msg').value = '';
-  window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(function() { document.getElementById('success-msg').style.display = 'none'; }, 8000);
-}
-
-
-function saveFactory() {
-  var saved = JSON.parse(localStorage.getItem('mex_saved_factories') || '[]');
-  var slug = 'tac';
-  var name = 'TAC Creative Manufacturing';
-  var exists = saved.find(function(f) { return f.slug === slug; });
-  var btn = document.getElementById('save-factory-btn');
-  if (!exists) {
-    saved.push({slug: slug, name: name, location: '', flag: '🏭'});
-    localStorage.setItem('mex_saved_factories', JSON.stringify(saved));
-    btn.textContent = '♥ Saved';
-    btn.style.background = '#f5f7ff';
-  } else {
-    saved = saved.filter(function(f) { return f.slug !== slug; });
-    localStorage.setItem('mex_saved_factories', JSON.stringify(saved));
-    btn.textContent = '♡ Save factory';
-    btn.style.background = 'transparent';
-  }
-}
-
-// Check saved state on load
 window.addEventListener('load', function() {
-  var saved = JSON.parse(localStorage.getItem('mex_saved_factories') || '[]');
-  if (saved.find(function(f) { return f.slug === 'tac'; })) {
-    var btn = document.getElementById('save-factory-btn');
-    if (btn) { btn.textContent = '♥ Saved'; btn.style.background = '#f5f7ff'; }
+  if (window.MExDD) {
+    window.MExDD.init('pm-base-wrap','pm-base-btn','pm-base-panel','pm-base-search','pm-base-list', null);
   }
+  // Wire up work countries as multi-select
+  document.querySelectorAll('#pm-work-list .dd-item').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var country = item.textContent.trim();
+      if (countriesSelected.indexOf(country) > -1) return;
+      countriesSelected.push(country);
+      item.classList.add('selected');
+      var pill = document.createElement('div');
+      pill.className = 'country-pill';
+      pill.setAttribute('data-c', country);
+      pill.innerHTML = country + '<button class="country-pill-remove" onclick="removeCountry(this)">x</button>';
+      document.getElementById('selected-countries').appendChild(pill);
+      updateWorkLabel();
+    });
+  });
+  document.getElementById('pm-work-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    var panel = document.getElementById('pm-work-panel');
+    var isOpen = panel.classList.contains('open');
+    window.MExDD.closeAll();
+    if (!isOpen) { panel.classList.add('open'); document.getElementById('pm-work-btn').classList.add('open'); }
+  });
+  document.getElementById('pm-work-search').addEventListener('input', function() {
+    window.MExDD.filterList('pm-work-list', this.value);
+  });
+  document.getElementById('pm-work-search').addEventListener('click', function(e) { e.stopPropagation(); });
+  document.getElementById('pm-work-panel').addEventListener('click', function(e) { e.stopPropagation(); });
 });
+
+function updateWorkLabel() {
+  var label = document.getElementById('pm-work-btn').querySelector('.dd-label');
+  if (label) label.textContent = countriesSelected.length > 0 ? countriesSelected.length + ' countries selected' : 'Select countries (click to add multiple)';
+}
+
+function removeCountry(btn) {
+  var pill = btn.parentElement;
+  var country = pill.getAttribute('data-c');
+  countriesSelected = countriesSelected.filter(function(c) { return c !== country; });
+  var item = document.querySelector('#pm-work-list .dd-item.selected');
+  document.querySelectorAll('#pm-work-list .dd-item').forEach(function(el) {
+    if (el.textContent.trim() === country) el.classList.remove('selected');
+  });
+  pill.remove();
+  updateWorkLabel();
+}
+
+function selectRole(role) {
+  selectedRole = role;
+  ['pm','pd','both'].forEach(function(r) {
+    document.getElementById('role-' + r).classList.toggle('selected', r === role);
+  });
+}
+
+function toggleTag(btn, type) {
+  if (type === 'main') {
+    var idx = mainSelected.indexOf(btn.textContent);
+    if (idx > -1) { mainSelected.splice(idx,1); btn.classList.remove('main-selected'); }
+    else {
+      if (mainSelected.length >= 3) { alert('You can select a maximum of 3 main categories.'); return; }
+      mainSelected.push(btn.textContent); btn.classList.add('main-selected');
+    }
+    document.getElementById('main-count').textContent = '(' + mainSelected.length + '/3 selected)';
+  } else {
+    var idx = specialismSelected.indexOf(btn.textContent);
+    if (idx > -1) { specialismSelected.splice(idx,1); btn.classList.remove('selected'); }
+    else { specialismSelected.push(btn.textContent); btn.classList.add('selected'); }
+  }
+}
+
+function addOther(event, type) {
+  if (event.key !== 'Enter') return;
+  var val = event.target.value.trim();
+  if (!val) return;
+  var btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'tag-btn'; btn.textContent = val;
+  btn.onclick = function() { toggleTag(this, type); };
+  document.getElementById(type === 'main' ? 'main-tags' : 'specialism-tags').appendChild(btn);
+  event.target.value = '';
+  toggleTag(btn, type);
+}
+
+async function submitApplication() {
+  var name = document.getElementById('pm-name').value.trim();
+  var email = document.getElementById('pm-email').value.trim();
+  var bio = document.getElementById('pm-bio').value.trim();
+  if (!name || !email || !bio) { alert('Please fill in your name, email and bio.'); return; }
+  if (mainSelected.length === 0) { alert('Please select at least 1 main category.'); return; }
+  if (countriesSelected.length === 0) { alert('Please select at least 1 country you work in.'); return; }
+  var baseEl = document.querySelector('#pm-base-list .dd-item.selected');
+  var baseCountry = baseEl ? baseEl.textContent.trim() : '';
+  var roleLabel = selectedRole === 'pm' ? 'Production Manager' : selectedRole === 'pd' ? 'Product Developer' : 'Production Manager and Product Developer';
+  var description = 'ROLE: ' + roleLabel + '
+MAIN CATEGORIES: ' + mainSelected.join(', ') + '
+ADDITIONAL EXPERTISE: ' + specialismSelected.join(', ') + '
+COUNTRIES: ' + countriesSelected.join(', ') + '
+BASE: ' + baseCountry + '
+EXPERIENCE: ' + document.getElementById('pm-experience').value + '
+LANGUAGES: ' + document.getElementById('pm-languages').value + '
+RATE: ' + document.getElementById('pm-rate').value + '
+PHONE: ' + document.getElementById('pm-phone').value + '
+LINKEDIN: ' + document.getElementById('pm-linkedin').value + '
+
+BIO: ' + bio;
+  var submitBtn = document.getElementById('submit-btn');
+  submitBtn.textContent = 'Submitting...'; submitBtn.disabled = true;
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  await sb.from('factory_applications').insert([{factory_name: name + ' (' + roleLabel + ')', contact_name: name, email: email, city: document.getElementById('pm-city').value + (baseCountry ? ', ' + baseCountry : ''), description: description, status: 'new'}]);
+  document.getElementById('signup-success').style.display = 'block';
+  submitBtn.textContent = 'Application submitted'; submitBtn.style.opacity = '0.5';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 </script>
 </body>
 </html>

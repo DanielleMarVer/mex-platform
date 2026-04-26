@@ -285,8 +285,8 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
   </div>
   <div class="nav-links">
     <a href="factories.html">Factories</a>
+    <a href="industry-specialists.html">Industry Specialists</a>
     <a href="for-brands.html">For brands</a>
-    <a href="estimate.html">Estimate</a>
     <a href="pricing.html">Pricing</a>
   </div>
   <div class="nav-actions">
@@ -407,7 +407,15 @@ async function doLogin() {
     localStorage.setItem('mex_token', data.session.access_token);
     localStorage.setItem('mex_user', JSON.stringify(data.user));
     // Redirect
-    window.location.href = data.isAdmin ? 'admin.html' : 'dashboard.html';
+    if (data.isAdmin) {
+      window.location.href = 'admin.html';
+    } else if (data.user && data.user.user_metadata && data.user.user_metadata.account_type === 'brand') {
+      window.location.href = 'brand-dashboard.html';
+    } else if (data.user && data.user.user_metadata && data.user.user_metadata.account_type === 'specialist') {
+      window.location.href = 'specialist-dashboard.html';
+    } else {
+      window.location.href = 'dashboard.html';
+    }
   } catch (e) {
     alert('Something went wrong. Please try again.');
     btn.textContent = 'Login';

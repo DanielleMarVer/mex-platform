@@ -227,8 +227,8 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
   </div>
   <div class="nav-links">
     <a href="factories.html">Factories</a>
+    <a href="industry-specialists.html">Industry Specialists</a>
     <a href="for-brands.html">For brands</a>
-    <a href="estimate.html">Estimate</a>
     <a href="pricing.html">Pricing</a>
   </div>
   <div class="nav-actions">
@@ -275,7 +275,8 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
         <input type="email" id="c-email" placeholder="Your email address *">
         <textarea id="c-msg" placeholder="Describe your project — product type, quantities, timeline, any specific requirements..."></textarea>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:10px 12px;background:#f5f7ff;border-radius:8px;border:1px solid #e8ecff;"><input type="checkbox" id="c-newsletter" checked style="accent-color:#1A35D4;flex-shrink:0;width:14px;height:14px;"><label for="c-newsletter" style="font-size:13px;color:#555;line-height:1.4;cursor:pointer;">Keep me updated with new factories and news from MEx.</label></div>
-        <button class="send-btn" onclick="sendEnquiry('Manteco')">Send enquiry</button>
+        <button class="save-btn-factory" id="save-factory-btn" onclick="saveFactory()" style="width:100%;background:transparent;color:#1A35D4;border:1.5px solid #1A35D4;padding:11px;border-radius:50px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;margin-bottom:10px;">♡ Save factory</button>
+      <button class="send-btn" onclick="sendEnquiry('Manteco')">Send enquiry</button>
       </div>
       <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e8ecff;">
         <a href="https://manteco.com" target="_blank" style="font-size:13px;color:#1A35D4;display:block;margin-bottom:8px;">manteco.com &rarr;</a>
@@ -363,16 +364,16 @@ function subscribeNewsletter() {
 </script>
 <script>
 function sendEnquiry(factory) {
-  const name = document.getElementById('c-name').value.trim();
-  const email = document.getElementById('c-email').value.trim();
-  const brand = document.getElementById('c-brand').value.trim();
-  const msg = document.getElementById('c-msg').value.trim();
+  var name = document.getElementById('c-name').value.trim();
+  var email = document.getElementById('c-email').value.trim();
+  var brand = document.getElementById('c-brand').value.trim();
+  var msg = document.getElementById('c-msg').value.trim();
   if (!name || !email || !brand || !msg) { alert('Please fill in all required fields.'); return; }
 
-  // Save to Supabase
-  const SUPABASE_URL = 'https://fqbaxqclrigvopavuxrf.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxYmF4cWNscmlndm9wYXZ1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NDE0MjEsImV4cCI6MjA5MjUxNzQyMX0.SqpXz3_TiNNiC2QIM5UCKyZeG2WyiKDmi-6d4eik6Oo';
-  
+  var SUPABASE_URL = 'https://fqbaxqclrigvopavuxrf.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxYmF4cWNscmlndm9wYXZ1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NDE0MjEsImV4cCI6MjA5MjUxNzQyMX0.SqpXz3_TiNNiC2QIM5UCKyZeG2WyiKDmi-6d4eik6Oo';
+
+  // 1. Save to Supabase
   fetch(SUPABASE_URL + '/rest/v1/enquiries', {
     method: 'POST',
     headers: {
@@ -389,7 +390,35 @@ function sendEnquiry(factory) {
       message: msg,
       status: 'new'
     })
-  }).catch(e => console.log('Enquiry save error:', e));
+  }).catch(function(e) { console.log('Save error:', e); });
+
+  // 2. Send email notification via Resend API
+  fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer re_gPzJpwSi_BFm3QbrmzuwBHpBG86fv2fpH'
+    },
+    body: JSON.stringify({
+      from: 'MEx. <onboarding@resend.dev>',
+      to: ['daniellemargaux@icloud.com'],
+      reply_to: email,
+      subject: 'New enquiry for ' + factory + ' via MEx.',
+      html: '<div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:32px 20px;">' +
+        '<h2 style="color:#1A35D4;margin-bottom:4px;">New enquiry on MEx.</h2>' +
+        '<p style="color:#555;margin-bottom:24px;">A brand has contacted <strong>' + factory + '</strong> through MEx.</p>' +
+        '<div style="background:#f5f7ff;border-radius:12px;padding:24px;margin-bottom:24px;">' +
+          '<p style="margin:0 0 8px;"><strong>From:</strong> ' + name + '</p>' +
+          '<p style="margin:0 0 8px;"><strong>Brand:</strong> ' + brand + '</p>' +
+          '<p style="margin:0 0 8px;"><strong>Email:</strong> <a href="mailto:' + email + '" style="color:#1A35D4;">' + email + '</a></p>' +
+          '<p style="margin:0 0 8px;"><strong>Message:</strong></p>' +
+          '<p style="margin:0;color:#333;">' + msg + '</p>' +
+        '</div>' +
+        '<a href="mailto:' + email + '" style="background:#1A35D4;color:#fff;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:500;display:inline-block;">Reply to ' + name + '</a>' +
+        '<p style="color:#aaa;font-size:12px;margin-top:32px;">Sent via MEx. The Manufacturing Exchange</p>' +
+      '</div>'
+    })
+  }).catch(function(e) { console.log('Email error:', e); });
 
   document.getElementById('success-msg').style.display = 'block';
   document.getElementById('c-name').value = '';
@@ -397,8 +426,37 @@ function sendEnquiry(factory) {
   document.getElementById('c-email').value = '';
   document.getElementById('c-msg').value = '';
   window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(() => { document.getElementById('success-msg').style.display = 'none'; }, 8000);
+  setTimeout(function() { document.getElementById('success-msg').style.display = 'none'; }, 8000);
 }
+
+
+function saveFactory() {
+  var saved = JSON.parse(localStorage.getItem('mex_saved_factories') || '[]');
+  var slug = 'manteco';
+  var name = 'Manteco';
+  var exists = saved.find(function(f) { return f.slug === slug; });
+  var btn = document.getElementById('save-factory-btn');
+  if (!exists) {
+    saved.push({slug: slug, name: name, location: '', flag: '🏭'});
+    localStorage.setItem('mex_saved_factories', JSON.stringify(saved));
+    btn.textContent = '♥ Saved';
+    btn.style.background = '#f5f7ff';
+  } else {
+    saved = saved.filter(function(f) { return f.slug !== slug; });
+    localStorage.setItem('mex_saved_factories', JSON.stringify(saved));
+    btn.textContent = '♡ Save factory';
+    btn.style.background = 'transparent';
+  }
+}
+
+// Check saved state on load
+window.addEventListener('load', function() {
+  var saved = JSON.parse(localStorage.getItem('mex_saved_factories') || '[]');
+  if (saved.find(function(f) { return f.slug === 'manteco'; })) {
+    var btn = document.getElementById('save-factory-btn');
+    if (btn) { btn.textContent = '♥ Saved'; btn.style.background = '#f5f7ff'; }
+  }
+});
 </script>
 </body>
 </html>

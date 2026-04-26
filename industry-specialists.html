@@ -3,18 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TAC Creative Manufacturing — MEx.</title>
+<title>Industry Specialists — MEx.</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<meta name="description" content="TAC Creative Manufacturing — verified cut & sew manufacturer in Portugal on MEx. MOQ 100 units. Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.">
-<meta name="keywords" content="manufacturing marketplace, factories, Portugal, clothing manufacturers, textile factories, private label, knitwear, outerwear">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="TAC Creative Manufacturing — MEx.">
-<meta property="og:description" content="TAC Creative Manufacturing — verified cut & sew manufacturer in Portugal on MEx. MOQ 100 units. Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MEx. — The Manufacturing Exchange">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TAC Creative Manufacturing — MEx.">
-<meta name="twitter:description" content="TAC Creative Manufacturing — verified cut & sew manufacturer in Portugal on MEx. MOQ 100 units. Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;color:#111;background:#fff;overflow-x:clip;width:100%;}
@@ -82,6 +72,9 @@ section{padding:72px 48px;}
 .filter-bar input:focus{border-color:#1A35D4;box-shadow:0 0 0 3px rgba(26,53,212,0.08);}
 .factories-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:32px 48px;}
 .no-results{padding:64px 48px;text-align:center;color:#aaa;font-size:15px;display:none;grid-column:1/-1;}
+.country-heading{grid-column:1/-1;display:flex;align-items:center;gap:16px;padding:32px 0 8px;margin-top:8px;}
+.country-heading-label{font-size:13px;font-weight:600;color:#1A35D4;text-transform:uppercase;letter-spacing:1.5px;white-space:nowrap;}
+.country-heading-line{flex:1;height:1px;background:#e4e4e4;}
 .profile-header{background:#1A35D4;padding:48px;display:flex;gap:28px;align-items:flex-start;}
 .profile-avatar{width:80px;height:80px;border-radius:18px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:600;color:#fff;flex-shrink:0;letter-spacing:1px;border:2px solid rgba(255,255,255,0.3);}
 .profile-name{font-size:32px;font-weight:600;letter-spacing:-0.8px;color:#fff;margin-bottom:6px;}
@@ -102,7 +95,7 @@ section{padding:72px 48px;}
 .contact-form input,.contact-form textarea{width:100%;padding:11px 14px;border:1px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;color:#111;margin-bottom:12px;background:#fff;}
 .contact-form input:focus,.contact-form textarea:focus{border-color:#1A35D4;box-shadow:0 0 0 3px rgba(26,53,212,0.08);}
 .contact-form textarea{height:100px;resize:vertical;}
-.checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;font-size:13px;color:#555;line-height:1.5;width:100%;}
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;font-size:13px;color:#555;line-height:1.5;}
 .checkbox-row input[type=checkbox]{margin-top:2px;accent-color:#1A35D4;flex-shrink:0;}
 .send-btn{width:100%;background:#1A35D4;color:#fff;border:none;padding:13px;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;}
 .send-btn:hover{opacity:0.88;}
@@ -204,6 +197,26 @@ select:focus {
 }
 
 
+.dd-wrap{position:relative;}
+.dd-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border:1px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;color:#111;background:#fff;cursor:pointer;min-width:180px;white-space:nowrap;user-select:none;}
+.dd-btn:hover{border-color:#1A35D4;}
+.dd-btn.open{border-color:#1A35D4;box-shadow:0 0 0 3px rgba(26,53,212,0.08);}
+.dd-btn.open .dd-arrow{transform:rotate(180deg);}
+.dd-arrow{transition:transform 0.2s;flex-shrink:0;}
+.dd-panel{position:absolute;top:calc(100% + 6px);left:0;background:#fff;border:1px solid #e0e0e0;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.10);z-index:999;min-width:220px;overflow:hidden;display:none;flex-direction:column;}
+.dd-panel.open{display:flex;}
+.dd-search-box{padding:12px 14px 8px;border-bottom:1px solid #f0f0f0;flex-shrink:0;}
+.dd-search-box input{width:100%;border:1px solid #e0e0e0;border-radius:8px;padding:8px 12px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:#111;}
+.dd-search-box input:focus{border-color:#1A35D4;}
+.dd-list{overflow-y:auto;max-height:280px;padding:6px 0;display:block;}
+.dd-all{padding:9px 16px;font-size:14px;color:#1A35D4;font-weight:500;cursor:pointer;border-bottom:1px solid #f0f0f0;margin-bottom:4px;}
+.dd-all:hover{background:#f5f7ff;}
+.dd-item{padding:9px 16px;font-size:14px;color:#111;cursor:pointer;}
+.dd-item:hover{background:#f5f7ff;color:#1A35D4;}
+.dd-item.selected{background:#EEF2FF;color:#1A35D4;font-weight:500;}
+.dd-item.dd-hidden{display:none;}
+
+
 /* LAYOUT CONSISTENCY */
 html { margin: 0; padding: 0; overflow-x: clip; } body { margin: 0; padding: 0; }
 .w-full { width: 100%; }
@@ -217,6 +230,25 @@ html { margin: 0; padding: 0; overflow-x: clip; } body { margin: 0; padding: 0; 
 section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
 .profile-header { background: #1A35D4; padding: 48px; display: flex; gap: 28px; align-items: flex-start; width: 100%; box-sizing: border-box; }
 
+</style>
+<style>
+.pm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:32px 48px;}
+.pm-card{background:#fff;border:1px solid #eee;border-radius:18px;padding:24px;transition:border-color 0.2s;display:block;text-decoration:none;}
+.pm-card:hover{border-color:#1A35D4;}
+.pm-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;}
+.pm-avatar{width:56px;height:56px;border-radius:50%;background:#f5f7ff;border:2px solid #e8ecff;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.pm-name{font-size:16px;font-weight:600;color:#111;margin-bottom:3px;}
+.pm-location{font-size:13px;color:#aaa;margin-bottom:6px;}
+.pm-rate{font-size:13px;font-weight:600;color:#1A35D4;}
+.pm-bio{font-size:13px;color:#555;line-height:1.65;margin-bottom:14px;}
+.pm-tags{display:flex;gap:7px;flex-wrap:wrap;}
+.pm-tag{font-size:12px;color:#1A35D4;background:#f0f4ff;padding:5px 11px;border-radius:20px;border:1px solid #e8ecff;}
+.pm-verified{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;background:#d4f5f0;color:#0a7c6e;flex-shrink:0;white-space:nowrap;}
+.pm-languages{font-size:12px;color:#aaa;margin-top:8px;}
+.save-btn{background:none;border:1px solid #e0e0e0;padding:6px 14px;border-radius:20px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;color:#555;margin-top:12px;display:inline-block;}
+.save-btn:hover{border-color:#1A35D4;color:#1A35D4;}
+.save-btn.saved{background:#f5f7ff;border-color:#1A35D4;color:#1A35D4;}
+.role-heading{grid-column:1/-1;padding:4px 0 2px;margin-top:8px;}
 </style>
 </head>
 <body>
@@ -237,76 +269,33 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
   </div>
 </nav>
 
-<div class="profile-header">
-  <div class="profile-avatar" style="font-size:36px;">🇵🇹</div>
+<div class="page-hero">
+  <h1>Industry Specialists</h1>
+  <p>Connect with experienced Production Managers and Product Developers who know the factories, speak the language and get your collection made right.</p>
+</div>
+
+<div class="trust-bar">
+  <div class="trust-item"><span class="tdot"></span> Vetted professionals only</div>
+  <div class="trust-item"><span class="tdot"></span> Production Managers &amp; Product Developers</div>
+  <div class="trust-item"><span class="tdot"></span> Contact directly through MEx.</div>
+</div>
+
+<div class="filter-bar">
+  <input type="text" id="pm-search" placeholder="Search by name, country or area of expertise..." oninput="applyFilters()">
+</div>
+
+<div class="pm-grid" id="pm-grid">
+  <div id="no-results" style="display:none;padding:40px;text-align:center;color:#aaa;font-size:14px;grid-column:1/-1;">No industry specialists found.</div>
+</div>
+
+<div style="background:#f5f7ff;border:1px solid #e8ecff;border-radius:14px;margin:0 48px 48px;padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
   <div>
-    <div class="profile-name">TAC Creative Manufacturing</div>
-    <div class="profile-loc">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Santo Tirso, Portugal
-    </div>
-    <div class="ftags"><span class="ftag" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);">Cut & Sew</span><span class="ftag" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);">Knitwear</span><span class="ftag" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);">Outerwear</span></div>
+    <div style="font-size:16px;font-weight:600;color:#111;margin-bottom:6px;">Are you an Industry Specialist?</div>
+    <div style="font-size:14px;color:#666;">List your profile on MEx. for &euro;29/month and connect with brands looking for production expertise.</div>
   </div>
+  <a href="signup-pm.html" style="background:#1A35D4;color:#fff;padding:12px 24px;border-radius:50px;font-size:14px;font-weight:500;text-decoration:none;white-space:nowrap;">Apply to join &mdash; &euro;29/month</a>
 </div>
-<div class="profile-body">
-  <div>
-    <div class="profile-section-title">About this factory</div>
-    <div class="profile-desc">Full-service cut and sew manufacturer specialising in knitwear and outerwear for international private label brands.</div>
-    <div class="profile-section-title">Factory details</div>
-    <div class="info-row"><span class="info-label">Country</span><span class="info-value">Portugal</span></div>
-    <div class="info-row"><span class="info-label">Location</span><span class="info-value">Santo Tirso</span></div>
-    <div class="info-row"><span class="info-label">Factory size</span><span class="info-value">Medium — 50 to 200 employees</span></div>
-    <div class="info-row"><span class="info-label">Minimum order</span><span class="info-value">100 units</span></div>
-    <div class="info-row"><span class="info-label">Website</span><span class="info-value"><a href="https://tac.pt" target="_blank" style="color:#1A35D4;">tac.pt</a></span></div>
-    <div class="profile-section-title">Certifications</div>
-    <div><span class="cert-pill">ISO 9001</span><span class="cert-pill">OEKO-TEX</span></div>
-    <div class="profile-section-title">Product categories</div>
-    <div class="ftags"><span class="ftag">Cut & Sew</span><span class="ftag">Knitwear</span><span class="ftag">Outerwear</span></div>
-    <div class="profile-section-title">Export markets</div><div><span class="export-tag">United Kingdom</span><span class="export-tag">France</span><span class="export-tag">Germany</span></div>
-    <div class="profile-section-title">Photo gallery</div>
-    <div class="photo-gallery"><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 1</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 2</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 3</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 4</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 5</span></div><div class="photo-placeholder"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A35D4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:12px;">Photo 6</span></div></div>
-  </div>
-  <div>
-    <div class="contact-card">
-      <div class="success-msg" id="success-msg">Your enquiry has been sent to MEx. The factory will be in touch with you directly.</div>
-      <h3>Contact this factory</h3>
-      <p>Send your brief to TAC Creative Manufacturing. MEx. will forward it to the factory who will then contact you directly.</p>
-      <div class="contact-form">
-        <input type="text" id="c-name" placeholder="Your name *">
-        <input type="text" id="c-brand" placeholder="Your brand name *">
-        <input type="email" id="c-email" placeholder="Your email address *">
-        <textarea id="c-msg" placeholder="Describe your project — product type, quantities, timeline, any specific requirements..."></textarea>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:10px 12px;background:#f5f7ff;border-radius:8px;border:1px solid #e8ecff;"><input type="checkbox" id="c-newsletter" checked style="accent-color:#1A35D4;flex-shrink:0;width:14px;height:14px;"><label for="c-newsletter" style="font-size:13px;color:#555;line-height:1.4;cursor:pointer;">Keep me updated with new factories and news from MEx.</label></div>
-        <button class="save-btn-factory" id="save-factory-btn" onclick="saveFactory()" style="width:100%;background:transparent;color:#1A35D4;border:1.5px solid #1A35D4;padding:11px;border-radius:50px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;margin-bottom:10px;">♡ Save factory</button>
-      <button class="send-btn" onclick="sendEnquiry('TAC Creative Manufacturing')">Send enquiry</button>
-      </div>
-      <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e8ecff;">
-        <a href="https://tac.pt" target="_blank" style="font-size:13px;color:#1A35D4;display:block;margin-bottom:8px;">tac.pt →</a>
-        <a href="tel:+351 252 499 000" style="font-size:13px;color:#666;">+351 252 499 000</a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="cta-band">
-  <h2>Need help managing production?</h2>
-  <p>Our production managers can handle the entire process — from sourcing to final delivery.</p>
-  <div style="display:flex;gap:12px;justify-content:center;"><a href="for-brands.html" class="btn-white">Learn more</a></div>
-</div>
-<div style="background:#1A35D4;padding:72px 48px;text-align:center;">
-  <div style="max-width:560px;margin:0 auto;">
-    <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Stay in the loop</div>
-    <div style="font-size:36px;font-weight:600;color:#fff;letter-spacing:-0.8px;line-height:1.1;margin-bottom:14px;">New factories. Industry news.<br>Straight to your inbox.</div>
-    <div style="font-size:16px;color:rgba(255,255,255,0.7);margin-bottom:32px;line-height:1.7;">Join brands already using MEx. to find the right manufacturing partners worldwide.</div>
-    <div style="display:flex;gap:0;max-width:440px;margin:0 auto;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);border-radius:50px;overflow:hidden;padding:6px 6px 6px 20px;align-items:center;">
-      <input type="email" id="nl-email" placeholder="Your email address" style="flex:1;border:none;outline:none;font-size:14px;font-family:'DM Sans',sans-serif;color:#fff;background:transparent;min-width:0;">
-      <button onclick="subscribeNewsletter()" style="background:#fff;color:#1A35D4;border:none;padding:10px 24px;border-radius:50px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:600;white-space:nowrap;flex-shrink:0;">Subscribe</button>
-    </div>
-    <div id="nl-success" style="display:none;margin-top:16px;font-size:14px;color:rgba(255,255,255,0.9);">You are on the list. Welcome to MEx.</div>
-    <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:16px;">No spam. Unsubscribe any time.</div>
-  </div>
-</div>
-  <div id="nl-success" style="display:none;margin-top:16px;font-size:14px;color:#1A35D4;">You are on the list. Welcome to MEx.</div>
-</div>
+
 <footer style="background:#fff;border-top:1px solid #f0f0f0;">
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:80px;padding:80px 48px 64px;">
     <div>
@@ -356,109 +345,109 @@ section { padding: 72px 48px; width: 100%; box-sizing: border-box; }
     </div>
   </div>
 </footer>
+
 <script>
-function subscribeNewsletter() {
-  const email = document.getElementById('nl-email').value.trim();
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  document.getElementById('nl-success').style.display = 'block';
-  document.getElementById('nl-email').value = '';
-}
-</script>
-<script>
-function sendEnquiry(factory) {
-  var name = document.getElementById('c-name').value.trim();
-  var email = document.getElementById('c-email').value.trim();
-  var brand = document.getElementById('c-brand').value.trim();
-  var msg = document.getElementById('c-msg').value.trim();
-  if (!name || !email || !brand || !msg) { alert('Please fill in all required fields.'); return; }
+var allSpecialists = [
+  {
+    name: 'Danielle Margaux',
+    flag: '🇿🇦',
+    location: 'Portugal',
+    role: 'both',
+    roleLabel: 'Production Manager & Product Developer',
+    rate: 'Rate on request',
+    bio: 'Senior fashion production manager and product developer with 25 years of experience across all categories of ladieswear — from wedding dresses and couture through to ready-to-wear and sports luxe. Deep factory knowledge across Portugal, China, South Africa, Mauritius and India.',
+    tags: ['Ladieswear', 'Product Development', 'Multi-country Sourcing'],
+    languages: 'English · Afrikaans · Dutch (basic) · Portuguese (basic) · German (basic)',
+    slug: 'danielle-margaux'
+  }
+];
 
-  var SUPABASE_URL = 'https://fqbaxqclrigvopavuxrf.supabase.co';
-  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxYmF4cWNscmlndm9wYXZ1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NDE0MjEsImV4cCI6MjA5MjUxNzQyMX0.SqpXz3_TiNNiC2QIM5UCKyZeG2WyiKDmi-6d4eik6Oo';
+function renderSpecialists(list) {
+  var grid = document.getElementById('pm-grid');
+  var existing = grid.querySelectorAll('.pm-card, .role-heading');
+  existing.forEach(function(el) { el.remove(); });
 
-  // 1. Save to Supabase
-  fetch(SUPABASE_URL + '/rest/v1/enquiries', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY,
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify({
-      factory_name: factory,
-      sender_name: name,
-      sender_email: email,
-      company: brand,
-      message: msg,
-      status: 'new'
-    })
-  }).catch(function(e) { console.log('Save error:', e); });
+  if (list.length === 0) {
+    document.getElementById('no-results').style.display = 'block';
+    return;
+  }
+  document.getElementById('no-results').style.display = 'none';
 
-  // 2. Send email notification via Resend API
-  fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer re_gPzJpwSi_BFm3QbrmzuwBHpBG86fv2fpH'
-    },
-    body: JSON.stringify({
-      from: 'MEx. <onboarding@resend.dev>',
-      to: ['daniellemargaux@icloud.com'],
-      reply_to: email,
-      subject: 'New enquiry for ' + factory + ' via MEx.',
-      html: '<div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:32px 20px;">' +
-        '<h2 style="color:#1A35D4;margin-bottom:4px;">New enquiry on MEx.</h2>' +
-        '<p style="color:#555;margin-bottom:24px;">A brand has contacted <strong>' + factory + '</strong> through MEx.</p>' +
-        '<div style="background:#f5f7ff;border-radius:12px;padding:24px;margin-bottom:24px;">' +
-          '<p style="margin:0 0 8px;"><strong>From:</strong> ' + name + '</p>' +
-          '<p style="margin:0 0 8px;"><strong>Brand:</strong> ' + brand + '</p>' +
-          '<p style="margin:0 0 8px;"><strong>Email:</strong> <a href="mailto:' + email + '" style="color:#1A35D4;">' + email + '</a></p>' +
-          '<p style="margin:0 0 8px;"><strong>Message:</strong></p>' +
-          '<p style="margin:0;color:#333;">' + msg + '</p>' +
+  var groups = {
+    'both': { label: 'Production Manager & Product Developer', items: [] },
+    'pm':   { label: 'Production Manager', items: [] },
+    'pd':   { label: 'Product Developer', items: [] }
+  };
+  list.forEach(function(s) { groups[s.role].items.push(s); });
+
+  ['both','pm','pd'].forEach(function(role) {
+    var group = groups[role];
+    if (group.items.length === 0) return;
+
+    var heading = document.createElement('div');
+    heading.className = 'role-heading';
+    heading.innerHTML = '<span style="font-size:11px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:1.2px;">' + group.label + '</span>';
+    grid.appendChild(heading);
+
+    group.items.forEach(function(s) {
+      var card = document.createElement('a');
+      card.href = 'pm-' + s.slug + '.html';
+      card.className = 'pm-card';
+      card.innerHTML =
+        '<div class="pm-top">' +
+          '<div class="pm-avatar">' + s.flag + '</div>' +
+          '<div style="flex:1;">' +
+            '<div class="pm-name">' + s.name + '</div>' +
+            '<div class="pm-location">📍 ' + s.location + '</div>' +
+            '<div class="pm-rate">' + s.rate + '</div>' +
+          '</div>' +
+          '<span class="pm-verified">✓ Verified</span>' +
         '</div>' +
-        '<a href="mailto:' + email + '" style="background:#1A35D4;color:#fff;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:500;display:inline-block;">Reply to ' + name + '</a>' +
-        '<p style="color:#aaa;font-size:12px;margin-top:32px;">Sent via MEx. The Manufacturing Exchange</p>' +
-      '</div>'
-    })
-  }).catch(function(e) { console.log('Email error:', e); });
+        '<p class="pm-bio">' + s.bio + '</p>' +
+        '<div class="pm-tags">' + s.tags.map(function(t) { return '<span class="pm-tag">' + t + '</span>'; }).join('') + '</div>' +
+        '<div class="pm-languages">🗣 ' + s.languages + '</div>' +
+        '<button class="save-btn" id="save-' + s.slug + '" onclick="event.preventDefault();savePM(this,\'' + s.slug + '\',\'' + s.name + '\',\'' + s.location + '\',\'' + s.flag + '\')">♡ Save profile</button>';
+      grid.appendChild(card);
+    });
+  });
 
-  document.getElementById('success-msg').style.display = 'block';
-  document.getElementById('c-name').value = '';
-  document.getElementById('c-brand').value = '';
-  document.getElementById('c-email').value = '';
-  document.getElementById('c-msg').value = '';
-  window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(function() { document.getElementById('success-msg').style.display = 'none'; }, 8000);
+  var saved = JSON.parse(localStorage.getItem('mex_saved_pms') || '[]');
+  saved.forEach(function(p) {
+    var btn = document.getElementById('save-' + p.slug);
+    if (btn) { btn.textContent = '♥ Saved'; btn.classList.add('saved'); }
+  });
 }
 
+function applyFilters() {
+  var q = document.getElementById('pm-search').value.toLowerCase();
+  var filtered = allSpecialists.filter(function(s) {
+    return !q || s.name.toLowerCase().includes(q) ||
+           s.location.toLowerCase().includes(q) ||
+           s.tags.some(function(t) { return t.toLowerCase().includes(q); }) ||
+           s.bio.toLowerCase().includes(q) ||
+           s.roleLabel.toLowerCase().includes(q);
+  });
+  renderSpecialists(filtered);
+}
 
-function saveFactory() {
-  var saved = JSON.parse(localStorage.getItem('mex_saved_factories') || '[]');
-  var slug = 'tac';
-  var name = 'TAC Creative Manufacturing';
-  var exists = saved.find(function(f) { return f.slug === slug; });
-  var btn = document.getElementById('save-factory-btn');
+function savePM(btn, slug, name, location, flag) {
+  var saved = JSON.parse(localStorage.getItem('mex_saved_pms') || '[]');
+  var exists = saved.find(function(p) { return p.slug === slug; });
   if (!exists) {
-    saved.push({slug: slug, name: name, location: '', flag: '🏭'});
-    localStorage.setItem('mex_saved_factories', JSON.stringify(saved));
+    saved.push({slug:slug, name:name, location:location, flag:flag});
+    localStorage.setItem('mex_saved_pms', JSON.stringify(saved));
     btn.textContent = '♥ Saved';
-    btn.style.background = '#f5f7ff';
+    btn.classList.add('saved');
   } else {
-    saved = saved.filter(function(f) { return f.slug !== slug; });
-    localStorage.setItem('mex_saved_factories', JSON.stringify(saved));
-    btn.textContent = '♡ Save factory';
-    btn.style.background = 'transparent';
+    saved = saved.filter(function(p) { return p.slug !== slug; });
+    localStorage.setItem('mex_saved_pms', JSON.stringify(saved));
+    btn.textContent = '♡ Save profile';
+    btn.classList.remove('saved');
   }
 }
 
-// Check saved state on load
-window.addEventListener('load', function() {
-  var saved = JSON.parse(localStorage.getItem('mex_saved_factories') || '[]');
-  if (saved.find(function(f) { return f.slug === 'tac'; })) {
-    var btn = document.getElementById('save-factory-btn');
-    if (btn) { btn.textContent = '♥ Saved'; btn.style.background = '#f5f7ff'; }
-  }
-});
+renderSpecialists(allSpecialists);
 </script>
+
 </body>
 </html>
